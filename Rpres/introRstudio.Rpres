@@ -1,0 +1,103 @@
+Introduction to RStudio
+========================================================
+author: Thijs Christiaan van Son
+date: 
+
+A first look
+========================================================
+type: section
+Insert pic of the IDE
+
+Customising
+========================================================
+The panes  
+++
+
+The R console
+========================================================
+1+1  
+create a vector  
+Good for testing/trying out code  
+NB! Execute by **Enter**
+
+The source/text editor
+========================================================
+Very powerful  
+The most important panel
+Starting a new script
+Opening a new script  
+NB! Execute code line by **Ctrl+Enter**
+
+Contents of other panels
+========================================================
+History  
+Files  
+Packages  
+Help  
+Plot  
+Presentation
+
+Coding in RStudio
+========================================================
+type: section
+
+Syntax highlighting
+========================================================
+Automatically colours scripts  
+Makes it easier to read  
+Helpful in avoiding and detecting typos and syntax errors  
+Adjusting the syntax highlighting
+
+Indentation
+========================================================
+Automatically indent code
+
+Commenting
+========================================================
+Comment **what** the code does, not **how** it does it.
+
+Find and replace
+========================================================
+Ctrl+F
+
+Code sections
+========================================================
+An RStudio feature  
+Extremely handy for code navigation  
+Ctrl+Shift+R
+
+Command history
+========================================================
+History tab in pane  
+History in console: arrow keys or ctrl+up
+
+Code quality
+========================================================
+A few words ...
+
+Tab completion
+========================================================
+Command completion  
+Completion of functions and arguments  
+Object completion  
+Filename completion
+
+Plotting
+========================================================
+type: section
+
+Plotting Data
+========================================================
+Plotting  
+Export plots from plot pane  
+Direct export of plots
+
+Project management
+========================================================
+type: section
+
+Creating a new project
+========================================================
+The advantages of using projects in RStudio  
+Directory structure
+
