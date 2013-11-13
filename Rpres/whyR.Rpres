@@ -1,0 +1,57 @@
+```{r setup, include=FALSE}
+opts_chunk$set(cache=TRUE)
+```
+
+
+Why R?
+========================================================
+author: Thijs Christiaan van Son  
+date: November 28, 2013
+Geo-Ecology Research Group  
+Naturhistorisk Museum, UiO  
+
+
+Reproducible research
+========================================================
+
+- Possibility to inspect code
+- Given acces to data, analysis can easily be re-run
+- Accountability
+- Hard to document what you did in point-and-click software
+
+R is open source
+========================================================
+**Open source**  
+- Its free
+- Available to everyone
+- The code is open to everyone
+
+***
+**Closed source**  
+- Expensive license
+- Not affordable by everyone
+- Code is a black box
+
+R packages
+========================================================
+
+Insert pic showing exponential growth of number of packages
+
+Outline of course
+========================================================
+  
+  1. **Introduction to RStudio**
+  2. **Help and package installation**
+  3. **Data structures of R**
+    * Vectors, Matrices, data frames, lists
+    * Vectorised operations (e.g., apply)
+    * Accessing/subsetting data
+    * Input/output
+  4. **Short intro to programming in R**
+    * Loops
+    * functions
+    * flow control
+    
+References
+========================================================
+  
