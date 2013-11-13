@@ -6,36 +6,105 @@ date:
 A first look
 ========================================================
 type: section
-Insert pic of the IDE
+![RstudioStartUp](../illustrations/rstudioFirstLook.png)
 
-Customising
+Options settings
 ========================================================
-The panes  
-++
+![RSoptionsSettings](../illustrations/rstudioOptions.png)
+
+Global options menu
+========================================================
+![RSglobalOptsMenu](../illustrations/rstudioGlobalOptions.png)
+
+Exercise: Customising RStudio
+========================================================
+type: alert
 
 The R console
 ========================================================
-1+1  
-create a vector  
-Good for testing/trying out code  
-NB! Execute by **Enter**
+type: section
+
+Executing commands in the R console
+========================================================
+![RSconsole](../illustrations/console.png)  
+![RSconsole](../illustrations/console2.png)  
+- The interpreter of R
+- Press **Enter** to execute command     
+- Creating a vector *v* using the seq() function  
+- The place for testing/trying out code
+
+Exercise: R console
+========================================================
+type: alert
+- Do simple mathematical operations
+- Create two vectors *a* and *b* and do some mathematical operations on them
 
 The source/text editor
 ========================================================
-Very powerful  
-The most important panel
-Starting a new script
-Opening a new script  
-NB! Execute code line by **Ctrl+Enter**
+type: section
+![sourceEditor](../illustrations/source.png)
+- Very powerful  
+- The most important panel
+- Execute/run line(s) with **Ctrl+Enter**
 
-Contents of other panels
+Starting and opening scripts
 ========================================================
-History  
-Files  
-Packages  
-Help  
-Plot  
-Presentation
+![sourceEditor](../illustrations/startingOpeningScript.png)
+
+Exercise: Open, write, and run an R-script
+========================================================
+type: alert
+- Start an R script in RStudio
+- Define two numeric vectors *x* and *y* of length four each
+  * Hint: Use the c() command to concatenate 
+  * Type ?c in the console to get the help file for c()
+- Define a new vector *z* that multiplies *x* and *y*
+- Run the script
+
+Contents of other tabs
+========================================================
+type: section
+
+History tab
+========================================================
+![History Tab](../illustrations/historyTab.png)
+- Keeps track of interpreted code (i.e., code sent to the console)
+- Select code by clicking on it and send it to console/source
+- More on navigation through command history later 
+
+Files tab
+========================================================
+![Files Tab](../illustrations/filesTab.png)
+- A simple file browser
+- Files can be opened by clicking on them
+
+Packages tab
+========================================================
+![Packages Tab](../illustrations/packagesTab.png)
+- Overview of installed R packages on your computer
+- Clicking on the packages provides an overview of functions
+
+Help tab
+========================================================
+![Help Tab](../illustrations/helpTab.png)
+- Search directly in the search window or by typing ?function_name in the console
+
+Plot tab
+========================================================
+![Plot Tab](../illustrations/plotTab.png)
+***
+More later
+
+Presentation tab
+========================================================
+![Presentation Tab](../illustrations/presentationTab.png)
+
+Any questions?
+========================================================
+type: prompt
+
+- This concludes the introduction to the outlay of RStudio
+- We will now move on and look at the tools for R coding in RStudio.
 
 Coding in RStudio
 ========================================================
