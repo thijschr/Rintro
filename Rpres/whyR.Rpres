@@ -48,9 +48,8 @@ Outline of course
     * Accessing/subsetting data
     * Input/output
   4. **Short intro to programming in R**
-    * Loops
-    * functions
-    * flow control
+    * Loops, functions, flow control
+  5. **Generating reports**
     
 References
 ========================================================
