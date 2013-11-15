@@ -35,7 +35,7 @@ Executing commands in the R console
 ![RSconsole](../illustrations/console2.png)  
 - The interpreter of R
 - Press **Enter** to execute command     
-- Creating a vector *v* using the seq() function  
+- Creating a vector *v* using the **seq()** function  
 - The place for testing/trying out code
 
 Exercise: R console
@@ -61,8 +61,8 @@ Exercise: Open, write, and run an R-script
 type: alert
 - Start an R script in RStudio
 - Define two numeric vectors *x* and *y* of length four each
-  * Hint: Use the c() command to concatenate 
-  * Type ?c in the console to get the help file for c()
+  - Hint: Use the **c()** command to concatenate 
+  - Type **?c** in the console to get the help file for c()
 - Define a new vector *z* that multiplies *x* and *y*
 - Run the script
 
@@ -92,7 +92,7 @@ Packages tab
 Help tab
 ========================================================
 ![Help Tab](../illustrations/helpTab.png)
-- Search directly in the search window or by typing ?function_name in the console
+- Search directly in the search window or by typing **?nameOfFunction** in the console
 
 Plot tab
 ========================================================
@@ -145,7 +145,6 @@ squared <- function(x){ x*x }
 
 squared(c(a, b, c))
 ```
-- Open a new script, write the code and save it as rstudioDemo.r
 - Play around with different syntax highlighting
 
 Indentation
@@ -203,6 +202,7 @@ plot(x = depth,
      pch = 21,
      col = "blue")
 ```
+**OBS!** Space, multiple lines, use of argument names
 
 Code quality: Naming conventions
 ========================================================
@@ -226,22 +226,73 @@ Find and replace
 - Can be case sensitive
 - Can be limited to selection
 
-Plotting
+Plotting and export
 ========================================================
 type: section
 
-Plotting Data
+Exercise: Export of a plot
 ========================================================
-Plotting  
-Export plots from plot pane  
+type: alert
+
+1. Create two vectors *a* and *b* using the **rnorm()** function
+2. Plot them against each other
+3. Export them to different formats using the Plots tab
+
 Direct export of plots
+========================================================
+```{r, directPlotExport, eval = FALSE}
+a <- rnorm(mean = 0, sd = 1, n = 10)
+b <- rnorm(mean = 0, sd = 1, n = 10)
+
+pdf(file = "directPlotExport.pdf", 
+    width = 5, 
+    height = 5)
+
+plot(x <- a, y <- b,
+     main = "Direct Export")
+dev.off()
+```
+- Everything between the **pdf()** call and **dev.off()** will be written to the pdf file
+- Other options: **png()**, **tiff()**, **svg()**, **postscript()** ++
+
+Any questions?
+========================================================
+type: prompt
 
 Project management
 ========================================================
 type: section
+![Project subdirectories](../illustrations/projectSubdirectories.png)
 
-Creating a new project
+RStudio project demystified
 ========================================================
-The advantages of using projects in RStudio  
-Directory structure
+- Actually just a directory/folder
+- Can (and often should) contain subdirectories
+- Working directory set to the project directory
+  - History and workspace data reloaded (if they are saved the last time)
+- An .Rprofile file can be created in the projects base directory
+  - Can be handy if you want certain packages to be loaded by default each time you start that project.
 
+Directory structure of a project
+========================================================
+- **R/:** The directory to hold scripts
+- **data/:** All data needed for the analysis
+- **output/:** Figures and other output files
+- **doc/:** Document and/or articles related to the project
+- **reports/:** Directory of generated reports from the analysis
+
+Advantages of using projects in RStudio
+========================================================
+- As your project becomes increasingly bigger, the number of temporary results, scripts and temporary files become hard to untangle
+  - Which will make reproducing exactely what you did harder and harder...
+- If you collaborate with people it becomes even messier
+- Therefore, each new research project should have its own RStudio project
+
+Exercise: Creating a new project
+========================================================
+type: alert
+![Starting Project](../illustrations/startingProject.png)
+***
+1. Create an R/ folder containing a projects/ folder
+2. Create a new project within the R/projects/ folder
+3. Create some subdirectories in your newly created project
