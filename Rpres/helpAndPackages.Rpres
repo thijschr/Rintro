@@ -1,28 +1,65 @@
-helpAndPackages
-========================================================
-author: 
-date: 
-
-First Slide
-========================================================
-
-For more details on authoring R presentations click the
-**Help** button on the toolbar.
-
-- Bullet 1
-- Bullet 2
-- Bullet 3
-
-Slide With Code
-========================================================
-
-```{r}
-summary(cars)
+```{r setup, include = FALSE}
+opts_chunk$set(cache = TRUE)
 ```
 
-Slide With Plot
+Getting help and installing packages
 ========================================================
+author: Thijs Christiaan van Son
+date: 
 
-```{r, echo=FALSE}
-plot(cars)
+Getting help
+========================================================
+type: section
+
+**OBS!** Help is in general limited to what packages you have installed and/or loaded into workspace!
+
+help.start() and help()
+========================================================
+help.start()  
+help(plot)  
+?plot
+
+apropos() and example()
+========================================================
+apropos()
+example(plot)  
+example(persp)
+
+Vignettes
+========================================================
+Get vignettes on how to use packages  
+vignette(): show available vignettes  
+vignette("vegan"): show the vegan vignette
+**OBS!** Only shows vignettes for installed packages
+
+When you're not sure what you're looking for
+========================================================
+help.search("ordination")  
+??"ordination"  
+
+RSiteSearch("multivariate abundance"): search in manuals and archived mailing lists
+
+Sample datasets
+========================================================
+R includes a lot of datasets for users to use  
+data(): lists available datasets  - depends on packages installed  
+data("datasetname") to load  
+help(datasetname) - provides information about a given dataset
+
+Exercise: Help
+========================================================
+type: alert
+Play around with the help commands  
+```{r, Help, eval = FALSE}
+help.start()
+help(plot)
+?plot
+apropos(plot)
+example(plot)
+vignette()
+help.search("ordination")
+??"ordination"
+RSiteSearch("multivariate abundance")
+data()
+help(cars)
 ```
