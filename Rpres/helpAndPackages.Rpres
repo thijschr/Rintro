@@ -15,36 +15,59 @@ type: section
 
 help.start() and help()
 ========================================================
-help.start()  
+```{r, helpI, eval = FALSE}
+# General R help
+help.start()
+
+# Help on specific command
 help(plot)  
-?plot
+?plot              # Alternative way
+```
 
 apropos() and example()
 ========================================================
-apropos()
-example(plot)  
-example(persp)
+```{r, apropos&example, eval = FALSE}
+# Returns a list containing sting foo
+apropos("foo")
 
+# Return an of function foo
+example(foo)  
+```
 Vignettes
 ========================================================
-Get vignettes on how to use packages  
-vignette(): show available vignettes  
-vignette("vegan"): show the vegan vignette
+```{r, vignettes, eval = FALSE}
+# A vignette shows how to use a package
+vignette()    # List of available vignettes
+
+# Vignette for the foo package
+vignette("foo")
+```
 **OBS!** Only shows vignettes for installed packages
 
-When you're not sure what you're looking for
+Topic search
 ========================================================
-help.search("ordination")  
-??"ordination"  
+```{r, topicSearch, eval = FALSE}
+# Searching about the topic of ordination
+help.search("ordination")
+??"ordination"     # Alternative way
 
-RSiteSearch("multivariate abundance"): search in manuals and archived mailing lists
+# Search in manuals and archived mailing lists
+RSiteSearch("multivariate abundance")
+```
 
 Sample datasets
 ========================================================
-R includes a lot of datasets for users to use  
-data(): lists available datasets  - depends on packages installed  
-data("datasetname") to load  
-help(datasetname) - provides information about a given dataset
+```{r, datasets, eval = FALSE}
+## Available datasets in R, depends on packages installed
+# lists available datasets
+data()
+
+# Loads dataset
+data(cars)
+
+# Information about dataset
+help("cars")       
+```
 
 Exercise: Help
 ========================================================
