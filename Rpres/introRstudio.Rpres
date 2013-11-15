@@ -1,3 +1,8 @@
+```{r setup, include = FALSE}
+# require(knitr)
+opts_chunk$set(cache = TRUE)
+```
+
 Introduction to RStudio
 ========================================================
 author: Thijs Christiaan van Son
@@ -103,7 +108,7 @@ Any questions?
 ========================================================
 type: prompt
 
-- This concludes the introduction to the outlay of RStudio
+- This concludes the introduction to the panels and tabs of RStudio
 - We will now move on and look at the tools for R coding in RStudio.
 
 Coding in RStudio
@@ -112,44 +117,114 @@ type: section
 
 Syntax highlighting
 ========================================================
-Automatically colours scripts  
-Makes it easier to read  
-Helpful in avoiding and detecting typos and syntax errors  
+![Syntax Highlighting](../illustrations/syntaxhighlighting.png)
+
+Advantages of syntax highlighting
+========================================================
+![Syntax Highlighting](../illustrations/syntaxhighlighting.png)
+***
+- Automatically colours scripts  
+- Makes it easier to read  
+- Helpful in avoiding and detecting typos and syntax errors 
+
 Adjusting the syntax highlighting
+========================================================
+![RStudio Appearance](../illustrations/rstudioAppearance.png)
+
+Exercise: Customising syntax highlighting
+=========================================
+type: alert
+```{r syntaxHighlight, eval=FALSE}
+a <- 3
+b <- 4
+c <- a * b
+
+x <- "This is a character"
+
+squared <- function(x){ x*x }
+
+squared(c(a, b, c))
+```
+- Open a new script, write the code and save it as rstudioDemo.r
+- Play around with different syntax highlighting
 
 Indentation
 ========================================================
-Automatically indent code
-
-Commenting
-========================================================
-Comment **what** the code does, not **how** it does it.
-
-Find and replace
-========================================================
-Ctrl+F
+RStudio indents code to increase readability
+```{r Indentation}
+a <- rnorm(n = 10, 
+           mean = 0, 
+           sd = 1)
+a
+```
+**Caution:** If you assign new content to an already existing object, R will overwrite the old content without a warning
 
 Code sections
 ========================================================
-An RStudio feature  
-Extremely handy for code navigation  
-Ctrl+Shift+R
+![Code Sections](../illustrations/codeSections.png)
+- An RStudio feature  
+- Extremely handy for code navigation  
+- Insert by: **Ctrl+Shift+R**
+
+Commenting
+========================================================
+- Comment **what** the code does, not **how** it does it.
+- Often, Code sections with good descriptive titles can be sufficient
+- Comment/uncomment code by **Ctrl+Shift+C**
 
 Command history
 ========================================================
-History tab in pane  
-History in console: arrow keys or ctrl+up
+- We have already seen the History tab
+- History in console: **arrow keys** or **Ctrl+Up**
 
-Code quality
-========================================================
-A few words ...
+![History List](../illustrations/historyList.png)
 
-Tab completion
+Exercise: Tab/command completion
 ========================================================
-Command completion  
-Completion of functions and arguments  
-Object completion  
-Filename completion
+type: alert
+- Completion of functions and arguments  
+- Object completion  
+- Filename completion
+- Bracket and quote completion
+
+Code quality: Readability
+========================================================
+```{r, codeReadability, eval = FALSE}
+# Compare:
+
+plot(x=depth,y=TOC,main="Depth-TOC relation",pch=21,col="blue")
+
+# vs.
+
+plot(x = depth,
+     y = TOC,
+     main = "Depth-TOC relation",
+     # sub = "This is superfluous",
+     pch = 21,
+     col = "blue")
+```
+
+Code quality: Naming conventions
+========================================================
+```{r, namingConventions, eval = FALSE}
+# Compare
+
+a <- 2             # bottom current speed 
+b <- 3             # surface current speed
+
+# vs.
+
+bottCurrSpeed <- 2
+surfCurrSpeed <- 3
+```
+Personally I try to avoid **.** and **_** in object names
+
+Find and replace
+========================================================
+![Find Replace](../illustrations/findReplace.png)
+- Invoke by **Ctrl+F**
+- Can be case sensitive
+- Can be limited to selection
 
 Plotting
 ========================================================
