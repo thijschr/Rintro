@@ -134,9 +134,26 @@ Installling packages directly in the console
 install.packages("vegan")
 ```
 
+Managing packages
+========================================================
+```{r, packageManagement, eval = FALSE}
+## Some other handy package management commands
+
+# A matrix of installed packages for which newer versions are available
+old.packages()
+
+# Update installed packages to the latest version
+update.packages()
+
+# Remove package(s)
+remove.packages()
+```
+
 Exercise: Installing packages
 ========================================================
 type: alert
+1. Install a package using the RStudio GUI
+2. Install a package using **install.packages()** in the console
 
 Any questions?
 ========================================================
