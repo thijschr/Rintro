@@ -226,6 +226,12 @@ Find and replace
 - Can be case sensitive
 - Can be limited to selection
 
+Any questions?
+========================================================
+type: prompt
+
+Any questions regarding coding in RStudio?
+
 Plotting and export
 ========================================================
 type: section
@@ -258,6 +264,8 @@ dev.off()
 Any questions?
 ========================================================
 type: prompt
+
+Any questions related to export of plots?
 
 Project management
 ========================================================
@@ -296,3 +304,9 @@ type: alert
 1. Create an R/ folder containing a projects/ folder
 2. Create a new project within the R/projects/ folder
 3. Create some subdirectories in your newly created project
+
+Any questions?
+========================================================
+type: prompt
+
+Any questions related to RStudio's project management?
