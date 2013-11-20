@@ -199,10 +199,173 @@ type: prompt
 Matrices
 ========================================================
 type: section
+- A *matrix* is a vector with two additional attributes:
+  - the number of rows
+  - the number of columns
+- **Remember** - a matrix is a *homogeneous* data type
 
-Data frames
+Creating matrices
+========================================================
+- Subscripts of rows and columns starts with 1
+- Unless told differently, R stores a matrix column-wise
+- One way to create a matrix is by using the **matrix()** function
+
+Creating matrices using matrix()
+========================================================
+```{r, creatingMatrices, eval = TRUE}
+y <- matrix(c(1, 4, 7, 10), nrow = 2, ncol = 2)
+y
+```
+
+Storing matrices by row
+========================================================
+```{r, matricesByRow, eval = TRUE}
+z <- matrix(c(1, 4, 7, 10), nrow = 2, byrow = T)
+z
+y        # Compare with by column
+```
+
+Creating an empty matrix
+========================================================
+```{r, emptyMatrix, eval = TRUE}
+e <- matrix(data = NA, ncol = 3, nrow = 3,
+            dimnames=list(c("a", "b", "c"), 
+                          c("x", "y", "z")
+                          )
+            )
+e
+```
+- ***OBS!*** Watch the automatic indentation of brackets
+- Handy because you can populate the matrix with data later on
+
+Matrix indexing
+========================================================
+```{r, matrixIndexing, eval = TRUE}
+z
+z[1, 2] # Always row subscript first
+z[, 2]  # Empty subscript = all rows or cols
+```
+
+Matrix filtering
+========================================================
+```{r, matrixFilt, eval = TRUE}
+z
+z[z[, 1] == 7, ]
+z[, z[2, ] >= 9]
+```
+
+Matrix filtering: Ex 2
+========================================================
+```{r, matrixFiltII, eval = TRUE}
+z
+(f <- z[1, ] >= 4)      # Returns logical
+z[, f]
+```
+
+Applying functions to rows and columns
+========================================================
+The **apply()** function  
+- apply(X, MARGIN, FUN)
+  - X is the matrix
+  - MARGIN is the dimension
+  - FUN the function to be applied
+
+**OBS!** There are several *apply() functions
+
+apply() example
+========================================================
+```{r, matrixApply, eval = TRUE}
+z
+apply(X = z, MAR = 1, sum)
+apply(X = z, MAR = 2, function(x) sum(x > 5))
+```
+
+Adding and deleting rows and columns
+========================================================
+- Matrices have fixed dimensions
+  - Thus, we cannot add or delete rows or columns
+- Solution: *reassign* the matrix
+  - Provides the same affect as if we had added or deleted
+  rows and/or columns
+
+A matrix is just a vector, but ...
+========================================================
+```{r, matrixIsVectBut, eval = TRUE}
+(x <- c(1, 4, 7, 10))
+z
+```
+
+A matrix is just a vector, but ... II
+========================================================
+Vector *x* and matrix *z* have the same length:
+```{r, matrixIsVectButII, eval = TRUE}
+length(x)     # Length of vector x
+length(z)     # Length of matrix z
+```
+
+A matrix is just a vector, but ... III
+========================================================
+But are different:
+```{r, matrixIsVectButIII, eval = TRUE}
+str(x)      # Class of vector
+str(z)      # Class of matrix
+```
+
+Names of rows and columns
+========================================================
+- The natural way to refer to rows and columns in a matrix is by use of row and column numbers
+- The **colnames()** and **rownames()** functions provide means of naming rows and columns of a matrix
+- It is especially handy to give column and row names when you want to inspect the contents of the matrix
+
+Names of rows and columns II
+========================================================
+```{r, rowColNamesMatrix, eval = TRUE}
+colnames(z) <- c("speciesA", "speciesB")
+rownames(z) <- c("1", "2")
+z
+str(z)
+```
+
+c() and cbind()
+========================================================
+```{r, cCbindRbind, eval = TRUE}
+x <- 1:3; y <- 4:6
+(v <- c(x, y))
+str(v); is.matrix(v)
+```
+
+c() and cbind() II
+========================================================
+```{r, cCbindRbindII, eval = TRUE}
+(w <- cbind(x, y))
+str(w); is.matrix(w)
+```
+
+Exercise: Matrices
+========================================================
+type: alert
+1. Create matrices of different dimensions using **matrix()**, **cbind()**, and **rbind()**
+2. What is the default way of storing data in a matrix using **matrix()**? By column or by row?
+3. Make sure you are able to store data in a matrix both by column and row
+4. From your created matrices, extract single values, columns, and rows
+5. Filter your matrices by applying a condition/target/cut-off value
+
+Any questions?
+========================================================
+type: prompt
+Regarding matrices
+
+Data frame
 ========================================================
 type: section
+Matrix-like, but for heterogeneous data  
+Creating data frames from scratch  
+Read a csv file to see the output  
+Accessing data frames by subscripts and by column names, names()    
+Keeping as data frame (not vector)  
+head()/tail()  
+str()  
+
 
 Lists
 ========================================================
