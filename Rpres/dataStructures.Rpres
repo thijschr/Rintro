@@ -98,6 +98,7 @@ length(u)
 v <- NA
 length(v)
 ```
+
 Indexing
 ========================================================
 Data structures in R are indexed
@@ -170,6 +171,16 @@ a longer vector
 c(2, 4, 6) + c(4, 0, 5, 3, 1)
 # The shorter vector was recycled like:
 c(2, 4, 6, 2, 4) + c(4, 0, 5, 3, 1)
+```
+
+More on NA values
+========================================================
+Look at this example with missing data (i.e., NA):
+```{r, naHandling, eval = TRUE}
+n <- c(3, 5, NA, 8, 4)
+n
+mean(n)
+mean(n, na.rm = TRUE)
 ```
 
 Vector element names
