@@ -1,5 +1,5 @@
 ```{r setup, include = FALSE}
-opts_chunk$set(cache = TRUE)
+opts_chunk$set(cache = FALSE)
 ```
 
 Data structures of R
@@ -369,14 +369,131 @@ Regarding matrices
 Data frame
 ========================================================
 type: section
-Matrix-like, but for heterogeneous data  
-Creating data frames from scratch  
-Read a csv file to see the output  
-Accessing data frames by subscripts and by column names, names()    
-Keeping as data frame (not vector)  
-head()/tail()  
-str()  
+- Data frames are very common in R  
+- Matrix-like, but they are *heterogeneous*  
+- Technically they are also lists, in which each component are equal length vectors  
+ 
 
+Creating data frames
+========================================================
+```{r, createDF, eval = TRUE}
+spA <- c(0, 0, 0, 1, 0, 1, 1)
+spB <- c(0, 1, 1, 0, 0, 0, 0)
+spC <- c(1, 0, 0, 0, 1, 0, 0)
+obs <- data.frame(speciesA = spA,
+                  speciesB = spB,
+                  speciesC = spC)
+obs
+```
+
+Input of tabular data
+========================================================
+I recommend using **.csv**-files  
+```{r, readCsv, eval = TRUE}
+env<-read.csv("../data/envVarSomeRaw.csv",
+              header = TRUE)
+env
+```
+
+Output of tabular data
+========================================================
+Writing tabular data to a **.csv**-file
+```{r, writeCsv, eval = TRUE}
+write.csv(x = obs, 
+          file = "../data/speciesObs.csv",
+          row.names = FALSE)
+```
+- *x* is the object to be written
+- *file* is the file you want the data to be written to
+- Excluding the rownames can often be wise
+
+Inspection of data frames
+========================================================
+```{r, strDF, eval = TRUE}
+str(env[c(1:5), ])
+```
+**OBS!** For brevity I am only showing the first five observations
+
+Inspection of data frames II
+========================================================
+```{r, headDF, eval = TRUE}
+head(env, 3)
+tail(env, 3)
+```
+
+Adding a column
+========================================================
+```{r, addColDF, eval = TRUE}
+# Adding a column
+env$X <- with(env, TOC / TN)
+env
+```
+
+Removing a column
+========================================================
+```{r, remColDF, eval = TRUE}
+env <- env[, -7]
+env
+```
+
+Accessing data frames
+========================================================
+```{r, acessDFsubScripts, eval = TRUE}
+# Extracting by subscripts
+env[1:5, 6]
+# Extracting by column name
+names(env)    # Handy function
+env[1:5, ]$Depth
+```
+
+Filtering
+========================================================
+```{r, filteringDF, eval = TRUE}
+# Extracting observations deeper than 60m
+env[env$Depth >= 60, ]
+```
+Extracts all observations (= rows) that comply with the filtering criteria
+
+Filtering II
+========================================================
+```{r, filteringDFII, eval = TRUE}
+# Two filtering criteria
+env[env$Depth <= 70 & env$BMD >= 1, ]
+```
+Extracts all observations (= rows) matching both the Depth and BMD criteria
+
+Avoiding dimension reduction
+========================================================
+```{r, dimRedDF, eval = TRUE}
+# Extracting a one-dimensional subset returns a vector
+env[1:5, ]$TN
+str(env[1:5, ]$TN)
+is.vector(env[1:5, ]$TN)
+```
+
+Avoiding dimension reduction II
+========================================================
+```{r, dimRedDFII, eval = TRUE}
+# Extracting a one-dimensional subset returns a vector
+env[1:5, 1, drop = FALSE]
+is.data.frame(env[1:5, 1, drop = FALSE])
+```
+
+Exercises: Data frames
+========================================================
+type: alert
+1. Create a few vectors and combine them in a data frame using the **data.frame()** function
+2. Load the envVarAllZST.csv file in the data directory
+  - Inspect the structure of the data frame
+  - Access subsets of the data by subscripts and by column name
+  - Do some filtering on the data frame
+  - Write the filtered data to a .csv file using the **write.csv()** function
+  - Open the created .csv file in a text editor
+3. Perform correlation tests using the **cor.test()** function
+
+Any questions?
+========================================================
+Regarding data frames
 
 Lists
 ========================================================
