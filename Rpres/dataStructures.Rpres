@@ -498,5 +498,103 @@ Regarding data frames
 Lists
 ========================================================
 type: section
+- Just as data frames, lists are **heterogeneous**
+- As we said when talking about vectors, technically, lists are vectors
+- As we will see later, the output of functions is often summarised in lists
 
+Creating lists
+========================================================
+```{r, createList, eval = TRUE}
+L <- list(first = c("Kim", "Oda", "Ola"),
+          age = c(19, 23, 25),
+          nationality = c("DE", "N", "N"))
+L
+```
 
+List tags are optional
+========================================================
+```{r, createListII, eval = TRUE}
+# Tag names are optional
+L2 <- list(c("Kim", "Oda", "Ola"),
+           c(19, 23, 25),
+           c("S", "DK", "N"))
+L2
+``` 
+
+Structure of a list
+========================================================
+```{r, strList, eval = TRUE}
+str(L)
+str(L2)
+``` 
+
+Accessing list components
+========================================================
+```{r, listAccess, eval = TRUE}
+# Three ways to access individual components of a list
+L$first
+L[["first"]]
+L[[1]]
+``` 
+
+Accessing list values
+========================================================
+```{r, listAccessII, eval = TRUE}
+# Three ways to access values of a list
+L$first[1]
+L[["first"]][1]
+L[[1]][1]
+``` 
+
+Modelling output is a list
+========================================================
+```{r, envModelling, eval = TRUE}
+# Fitting a linear model
+mod <- lm(Mud ~ Depth, data = env)
+
+# Is the mod object a list?
+is.list(mod)
+# str(mod)    # Not shown due to size
+``` 
+
+Modelling output is a list II
+========================================================
+```{r, envModellingII, eval = TRUE}
+names(mod)
+mod$coefficients   # Accessing output
+``` 
+
+lapply() and sapply() functions
+========================================================
+```{r, applyOnLists, eval = TRUE}
+# Creating a new list
+L3 <- list(c(4:6),
+           c(13:17))
+L3
+``` 
+
+lapply() and sapply() functions II
+========================================================
+```{r, lapply, eval = TRUE}
+# lapply() on a list
+lapply(L3, sum)
+# sapply() returns a vector
+# Which in some cases can be more desirable
+sapply(L3, sum)
+``` 
+
+Exercises: Lists
+========================================================
+type: alert
+1. Create a list, with tags, that contains four components, one for each of the major data types: vector, matrix, data frame, and list
+2. Look at the structure of the list
+3. Access list components and list values
+4. Specify and run a linear model using data from the envVarAllZST.csv file that you imported earlier
+  - Extract and inspect the coefficients, residuals and fitted values
+  - plot the residuals vs. the fitted values
+
+Any questions?
+========================================================
+type: prompt
+
+List or data structure/type in general?
