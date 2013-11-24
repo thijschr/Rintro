@@ -17,8 +17,8 @@ Dim | Homogeneous | Heterogeneous
 2d  | Matrix      | Data frame
 nd  | Array       | 
 
-- *Homogeneous*: ...
-- *Heterogeneous*: ...
+- *Homogeneous*: Contents must be of the same type
+- *Heterogeneous*: Contents can be of different type
 
 Vectors
 ========================================================
