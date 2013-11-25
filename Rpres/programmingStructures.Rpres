@@ -245,6 +245,25 @@ for (i in seq(length(avg)))
 avg
 ```
 
+The ifelse() function
+========================================================
+- Takes three arguments
+  - the first argument is the condition
+  - the second argument is the treatment if the condition is **TRUE**
+  - the third argument is the treatment if the condition is **FALSE**
+- The **ifelse()** function can take a vector as input
+
+Example with ifelse() function
+========================================================
+```{r, ifElseFunction, eval = TRUE}
+k <- 1:10
+ifelse(k < 3 | k > 8, k, 0)
+```
+Here we have a compound condition:
+- if k is smaller than 3 OR k is larger than 8
+- then return the original value of k
+- else return 0
+
 Arithmetic and Boolean R operators
 ========================================================
 Operation | Description
@@ -289,4 +308,18 @@ Regarding flow control and if-else statements
 Functions
 ========================================================
 type: section
+
+- A function is simply a sequence of operations that belong naturally
+together
+- If you find yourself typing the same code sequence over and over again, 
+why not turn the code sequence into a function?
+
+A simple function
+========================================================
+
+
+Your own functions in *apply() functions
+========================================================
+
+
 
