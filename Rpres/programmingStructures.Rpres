@@ -7,20 +7,173 @@ Intro to programming Structures in R
 author: Thijs Christiaan van Son
 date: 
 
+Ecologists and programming
+========================================================
+- Constructing loops and functions may not be the first things ecologists new to R
+would spend time learning
+- These techniques are often perceived as difficult to grasp in the beginning
+- However, the reward can be huge in terms of time saved and the possibility to do
+more advanced analyses
+
 Loops
 ========================================================
 type: section
+Workflow of a for loop
 
-For loops
+- for*i* is from 1 to 10  
+    - data manipulation #1  
+    - data manupulation #2
+    - ...
+    - data manipulation #n
+- end of loop
+
+For loops: a first example
 ========================================================
+```{r, firstLoop, eval = TRUE}
+x <- c(3, 1, 6, 4)
+for (number in x) {     # a for loop
+  print(number^2)
+}
+```
+- In this example we only do one data manipulation per iteration, namely, we square the numbers in vector *x*
+- This is done one-by-one, first the first component of vector *x*, then the second component and so on, until we have iterated over all components
 
-While loops
+For loops: a more applied example
 ========================================================
+This is the *env* data frame we loaded earlier. Imagine we want to correlate Depth
+with all the other variables and then store the results in a data frame and export to csv
+```{r, load_env, eval = TRUE, echo = FALSE}
+env<-read.csv("../data/envVarSomeRaw.csv",
+              header = TRUE)
+env
+```
+
+For loops: a more applied example II
+========================================================
+**Workflow** for this task:  
+- 1) Create vectors to store tau and p-values  
+- 2) Code the for loop  
+  - for loop with five iterations
+  - in each iteration, run **cor.test()**  
+  - in each iteration, extract tau and p-values  
+  - end of loop  
+- 3) Store the results in a data frame  
+- 4) Write results to a csv file  
+- 5) Inspect the csv file  
 
 
-Flow control
+For loops: a more applied example III
+========================================================
+```{r, secondLoop, eval = TRUE}
+## Workflow
+# 1) Create vectors to store tau and p-values
+tau <- rep(NA, length(names(env)[-6]))
+pval <- rep(NA, length(names(env)[-6]))
+tau; pval
+```
+
+For loops: a more applied example IV
+========================================================
+```{r, secondLoopIIa, eval = TRUE}
+# 2) Code the for loop
+for (i in seq(ncol(env[-6]))) {
+  tmp.i <- env[, i]
+  test.i <- cor.test(x = env$Depth,
+                     y = tmp.i,
+                     method = "k")
+  tau[i] <- test.i$estimate
+  pval[i] <- test.i$p.value
+}
+# 3) Store the results in a data frame
+resultsDF <- data.frame(var = names(env)[-6], 
+                        tau = tau,
+                        pvalue = pval)
+```
+
+For loops: a more applied example V
+========================================================
+```{r, secondLoopIII, eval = TRUE}
+# 4) Write results to a csv file
+write.csv(resultsDF,
+          file = "../data/correlationResults.csv",
+          row.names = FALSE)
+resultsDF     # Displaying results
+```
+We can now inspect the resulting csv file
+
+Exercises: Loops
+========================================================
+type: alert
+- Using a for loop, make one plot showing all the correlations 
+between Depth and the other variables in the *env* data frame
+- Write the plots to one pdf file
+- On the next slide the general workflow for each correlation plot
+is shown, put it in a for loop and make the changes necessary to 
+iterate over all correlations
+- You must use **par(mfrow = c(3, 2))** to specify how many columns and 
+rows you want in the compound plot - put it before the call to the 
+**plot()** function
+
+Exercises: Loops II
+========================================================
+type: alert
+```{r, secondLoopIV, eval = FALSE}
+pdf(file = "../data/loopExample.pdf",
+    height = 5, width = 5)
+plot(x = env$Depth, y = env$TN,
+     main = "Correlation with TN",
+     xlab = "Depth",
+     ylab = "TN",
+     type = "n")
+points(x = env$Depth, y = env$TN,
+       pch = 21,
+       col = "black", bg = "red")
+dev.off()
+```
+
+Exercises: Loops III
+========================================================
+type: alert
+
+**Hint** - Identify the arguments that needs to be changed 
+(i.e., made generic)
+
+```{r, secondLoopV, eval = FALSE, echo = FALSE}
+pdf(file = "../data/multipleCorrPlot.pdf",
+    height = 9, width = 6)
+
+par(mfrow = c(3, 2))
+
+for (i in seq(ncol(env[-6]))) {
+  env.i <- env[, i]
+  plot(x = env$Depth, y = env.i,
+     main = paste("Correlation with", 
+                  names(env)[i], sep = " "),
+     xlab = "Depth",
+     ylab = names(env)[i],
+     type = "n")
+  points(x = env$Depth, y = env.i,
+       pch = 21,
+       col = "black", bg = "red")
+}
+
+dev.off()
+```
+
+
+Flow control (if-else)
 ========================================================
 type: section
+The if-else statement works as follows:  
+
+
+sdfadf
+========================================================
+- next
+- if
+- if-else
+  - if (cond) expr1 else expr2
+- Basic R operators (p.145)
 
 
 Functions
