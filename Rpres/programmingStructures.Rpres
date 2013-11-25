@@ -296,7 +296,9 @@ type: alert
 
 1. Make sure you understand how if-else statements are constructed
 2. Construct some simple if-else statements using a single scalar as input
-3. Create a vector and make a for loop that includes an if-else statement and that iterates over your created vector
+3. Create a vector to be used as input to a call to the **ifelse()** function
+  - Create an ifelse statement with a compound condition
+4. Create a vector and make a for loop that includes an if-else statement and that iterates over your created vector
 
 Any questions?
 ========================================================
