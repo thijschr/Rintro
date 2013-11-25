@@ -298,7 +298,7 @@ type: alert
 2. Construct some simple if-else statements using a single scalar as input
 3. Create a vector to be used as input to a call to the **ifelse()** function
   - Create an ifelse statement with a compound condition
-4. Create a vector and make a for loop that includes an if-else statement and that iterates over your created vector
+4. Create a vector, then code a for loop that includes an if-else statement and that iterates over your created vector
 
 Any questions?
 ========================================================
@@ -315,13 +315,96 @@ type: section
 together
 - If you find yourself typing the same code sequence over and over again, 
 why not turn the code sequence into a function?
+- If you wanna see who functions are coded in R, use the **page()** function [e.g., page(lm)], which will return the code
 
-A simple function
+Creating a simple function
 ========================================================
+Returning an object: By default, the last object defined is returned:
+```{r, simpleFunctionIa, eval = TRUE}
+# A function without arguments
+f <- function() {
+  g <- 2
+  h <- 4
+}
 
+test <- f()
+test
+```
+
+Creating a simple function II
+========================================================
+The function can return an object using **return()**:
+```{r, simpleFunctionIb, eval = TRUE}
+# Still a function without arguments
+f2 <- function() {
+  g <- 2
+  h <- 4
+  return(g)
+}
+
+f2()     # Not returning last object anymore
+```
+
+Functions with arguments
+========================================================
+Creating a function for squaring values
+```{r, functionArgs, eval = TRUE}
+square <- function(x) {
+  sqVal <- x^2
+  return(sqVal)
+}
+square(3)
+# Passing a vector to the function
+s <- c(NA, 4, 2, 9)
+square(s)
+```
+
+Function with ... argument
+========================================================
+- The ... argument allows for adding arguments that will be passed
+to functions inside the function
+- **Yes!** You can call functions within another function
+- The possibility to specify an ***...*** argument enhances the flexibility of a function
+- Lets see how this works:
+
+Function with ... argument II
+========================================================
+```{r, functionArgsII, eval = TRUE, fig.show= FALSE}
+# Making a plotting function
+plt <- function(x, y, ...) {
+  plot(x, y, 
+       type = "p",      # An ... argument
+       pch = 21,        # This also
+       bg = "red",      # And this
+       ...)
+}
+```
+
+Function with ... argument III
+========================================================
+```{r, functionArgsIII, eval = TRUE}
+plt(x = env$Depth, y = env$BMD,
+    main = "BMD vs. Depth")  # ... argument
+```
 
 Your own functions in *apply() functions
 ========================================================
+```{r, ownFuncWithApply, eval = TRUE}
+# Using our square() function with apply
+apply(env, MARGIN = 2, square)
+```
 
+Exercises: Functions
+========================================================
+type: alert
+1. Create a function without arguments, as well as with and without a **return()** call
+2. Create a function that calculates the volum of a box given three arguments a, b, and c
+
+
+Any questions?
+========================================================
+type: prompt
+
+Regarding Functions
 
 
