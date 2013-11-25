@@ -1,0 +1,29 @@
+```{r setup, include = FALSE}
+opts_chunk$set(cache = FALSE)
+```
+
+Intro to programming Structures in R
+========================================================
+author: Thijs Christiaan van Son
+date: 
+
+Loops
+========================================================
+type: section
+
+For loops
+========================================================
+
+While loops
+========================================================
+
+
+Flow control
+========================================================
+type: section
+
+
+Functions
+========================================================
+type: section
+
