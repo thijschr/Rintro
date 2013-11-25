@@ -160,6 +160,12 @@ for (i in seq(ncol(env[-6]))) {
 dev.off()
 ```
 
+Any questions?
+========================================================
+type: prompt
+
+Regarding loops
+
 
 Flow control (if-else)
 ========================================================
