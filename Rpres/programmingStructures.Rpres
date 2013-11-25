@@ -164,16 +164,120 @@ dev.off()
 Flow control (if-else)
 ========================================================
 type: section
+Flow control is handy when how you want to proceed in your analysis 
+is dependent on a condition
+
+This is typically controlled by if-else statements
+
 The if-else statement works as follows:  
+**if (cond) expression1 else expression2**  
 
 
-sdfadf
+A simple if-else example
 ========================================================
-- next
-- if
-- if-else
-  - if (cond) expr1 else expr2
-- Basic R operators (p.145)
+```{r, ifElseSimpleIa, eval = TRUE}
+a = 3
+
+y <- if(a == 3) 
+  { a } else  # else on same line as the }
+    { a + 1 }
+y
+```
+**OBS!** The **else** statement needs to be on the same line as 
+the closing **{** of the first expression
+
+A simple if-else example II
+========================================================
+
+```{r, ifElseSimpleIb, eval = TRUE}
+a = 1    # Changing the value of a
+
+y <- if(a == 3) 
+  { a } else  
+    { a + 1 }
+y
+```
+
+Another if-else example
+========================================================
+```{r, ifElseExample2a, eval = FALSE}
+# Calculating the mean of variables in env df
+avg <- apply(env, MARGIN = 2, mean)
+
+# if-else statement within a loop
+# If the value is above some threshold, print
+# the value, if not print something else
+for (i in seq(length(avg))) 
+{
+  avg.i <- avg[i]
+  if(avg.i >= 5) {
+    print(avg.i) } else {
+      print("Mean value too low")
+    }
+}
+```
+
+Output of Another if-else example
+========================================================
+```{r, ifElseExample2b, eval = TRUE, echo = FALSE}
+# Calculating the mean of variables in env df
+avg <- apply(env, MARGIN = 2, mean)
+
+# if-else statement within a loop
+# If the value is above some threshold, print
+# the value, if not print something else
+for (i in seq(length(avg))) 
+{
+  avg.i <- avg[i]
+  if(avg.i >= 5) {
+    print(avg.i) } else {
+      print("Mean value too low")
+    }
+}
+
+# The average values of env df
+avg
+```
+
+Arithmetic and Boolean R operators
+========================================================
+Operation | Description
+--------- | -----------
+x + y     | Addition
+x - y     | Subtraction
+x * y     | Multiplication
+x / y     | Division
+x ^ y     | Exponentiation
+x %% y    | Modular arithmetic
+x %/%     | Integer division
+x == y    | Test for equality
+
+**x || y** Boolean OR (scalars)  
+**x | y** Boolean OR (vectors)
+
+***
+
+Operation | Description
+--------- | -----------
+x <= y    | Test for less than or equal to
+x >= y    | Test for larger than or equal to
+x && y    | Boolean AND for scalars
+x & y     | Boolean AND for vectors
+!x        | Boolean negation
+
+Exercise: Flow control
+========================================================
+type: alert
+
+1. Make sure you understand how if-else statements are constructed
+2. Construct some simple if-else statements using a single scalar as input
+3. Create a vector and make a for loop that includes an if-else statement and that iterates over your created vector
+
+Any questions?
+========================================================
+type: prompt
+
+Regarding flow control and if-else statements
 
 
 Functions
