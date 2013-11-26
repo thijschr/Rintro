@@ -3,7 +3,7 @@ opts_chunk$set(cache=TRUE)
 ```
 
 
-Why R?
+Intro to R & Why R?
 ========================================================
 author: Thijs Christiaan van Son  
 date: November 27-28, 2013
@@ -17,7 +17,7 @@ Reproducible research
 - Possibility to inspect code
 - Given acces to data, analysis can easily be re-run
 - Accountability
-- Hard to document what you did in point-and-click software
+- In contrast, it's hard to document what you did in point-and-click software
 
 R is open source
 ========================================================
@@ -34,8 +34,12 @@ R is open source
 
 R packages
 ========================================================
+![rPackages](../illustrations/rPackages.jpg)
 
-Insert pic showing exponential growth of number of packages
+***
+
+In November 2013, the number of contributed R packages on CRAN reached 5000.
+
 
 Outline of course
 ========================================================
@@ -44,13 +48,30 @@ Outline of course
   2. **Help and package installation**
   3. **Data structures of R**
     * Vectors, Matrices, data frames, lists
-    * Vectorised operations (e.g., apply)
+    * Vectorised operations
     * Accessing/subsetting data
     * Input/output
   4. **Short intro to programming in R**
     * Loops, functions, flow control
-  5. **Generating reports**
+  5. **Generating reports** (Demo, if time permits)
     
 References
 ========================================================
-  
+A lot of R-related resources, to name a few:
+- Some books
+  - A beginners guide to R (2009)
+  - R in a Nutshell (2010)
+  - The art of R programming (2011)
+- A couple of webpages
+  - http://en.wikibooks.org/wiki/R_Programming
+  - http://www.r-bloggers.com/
+- There also exist a lot of method-related resources
+
+Downloading course material
+========================================================
+- Make an R/ directory and a subdirectory called Projects/ in an appropriate place 
+in your computer
+- Go to: https://bitbucket.org/thijschr/rintro
+- In the box on the right-hand side, click the download-link
+- Extract the downloaded zip-file to your R/Projects/ folder
+- All the material related to the course is contained in the zip-file
