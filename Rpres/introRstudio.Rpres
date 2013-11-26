@@ -25,15 +25,18 @@ Exercise: Customising RStudio
 ========================================================
 type: alert
 
+Leave out the Appearance for now
+
 The R console
 ========================================================
 type: section
+The interpreter of R!
 
 Executing commands in the R console
 ========================================================
 ![RSconsole](../illustrations/console.png)  
 ![RSconsole](../illustrations/console2.png)  
-- The interpreter of R
+- The console can also be used as a calculator
 - Press **Enter** to execute command     
 - Creating a vector *v* using the **seq()** function  
 - The place for testing/trying out code
@@ -43,13 +46,20 @@ Exercise: R console
 type: alert
 - Do simple mathematical operations
 - Create two vectors *a* and *b* and do some mathematical operations on them
+  - Addition
+  - Multiplication
+  - Division
+  - Log (what is the default base in the **log()** function?)
+- **Hint:** Use the **c()** command to concatenate 
+- Type **?c** in the console to get the help file for c()
 
 The source/text editor
 ========================================================
 type: section
 ![sourceEditor](../illustrations/source.png)
 - Very powerful  
-- The most important panel
+- The most important pane
+- This is where you will spend most of your time
 - Execute/run line(s) with **Ctrl+Enter**
 
 Starting and opening scripts
@@ -61,46 +71,44 @@ Exercise: Open, write, and run an R-script
 type: alert
 - Start an R script in RStudio
 - Define two numeric vectors *x* and *y* of length four each
-  - Hint: Use the **c()** command to concatenate 
-  - Type **?c** in the console to get the help file for c()
 - Define a new vector *z* that multiplies *x* and *y*
 - Run the script
 
-Contents of other tabs
+Contents of other panes
 ========================================================
 type: section
 
-History tab
+History pane
 ========================================================
 ![History Tab](../illustrations/historyTab.png)
-- Keeps track of interpreted code (i.e., code sent to the console)
+- Keeps track of interpreted code (i.e., code sent to and executed in the console)
 - Select code by clicking on it and send it to console/source
 - More on navigation through command history later 
 
-Files tab
+Files pane
 ========================================================
 ![Files Tab](../illustrations/filesTab.png)
 - A simple file browser
 - Files can be opened by clicking on them
 
-Packages tab
+Packages pane
 ========================================================
 ![Packages Tab](../illustrations/packagesTab.png)
 - Overview of installed R packages on your computer
 - Clicking on the packages provides an overview of functions
 
-Help tab
+Help pane
 ========================================================
 ![Help Tab](../illustrations/helpTab.png)
 - Search directly in the search window or by typing **?nameOfFunction** in the console
 
-Plot tab
+Plot pane
 ========================================================
 ![Plot Tab](../illustrations/plotTab.png)
 ***
 More later
 
-Presentation tab
+Presentation pane
 ========================================================
 ![Presentation Tab](../illustrations/presentationTab.png)
 
@@ -108,12 +116,20 @@ Any questions?
 ========================================================
 type: prompt
 
-- This concludes the introduction to the panels and tabs of RStudio
+- This concludes the introduction to the panes of RStudio
 - We will now move on and look at the tools for R coding in RStudio.
 
 Coding in RStudio
 ========================================================
 type: section
+- Syntax highlighting
+- Indentation
+- Code sections
+- Commenting
+- Tab completion
+- Browsing command history in console
+- Code quality
+- Find and replace
 
 Syntax highlighting
 ========================================================
@@ -135,6 +151,7 @@ Exercise: Customising syntax highlighting
 =========================================
 type: alert
 ```{r syntaxHighlight, eval=FALSE}
+# Write this script in your source pane
 a <- 3
 b <- 4
 c <- a * b
@@ -173,7 +190,7 @@ Commenting
 
 Command history
 ========================================================
-- We have already seen the History tab
+- We have already seen the History pane
 - History in console: **arrow keys** or **Ctrl+Up**
 
 ![History List](../illustrations/historyList.png)
@@ -185,6 +202,7 @@ type: alert
 - Object completion  
 - Filename completion
 - Bracket and quote completion
+  - Corresponding brackets and quotes are highlighted
 
 Code quality: Readability
 ========================================================
@@ -217,7 +235,9 @@ b <- 3             # surface current speed
 bottCurrSpeed <- 2
 surfCurrSpeed <- 3
 ```
-Personally I try to avoid **.** and **_** in object names
+- Personally I try to avoid **.** and **_** in object names
+- I often start object names in lowercase and then have uppercase for new words in names
+- **OBS!** Never use space in names!
 
 Find and replace
 ========================================================
@@ -232,7 +252,7 @@ type: prompt
 
 Any questions regarding coding in RStudio?
 
-Plotting and export
+Export of plots
 ========================================================
 type: section
 
@@ -243,6 +263,7 @@ type: alert
 1. Create two vectors *a* and *b* using the **rnorm()** function
 2. Plot them against each other
 3. Export them to different formats using the Plots tab
+4. Open them and inspect their quality
 
 Direct export of plots
 ========================================================
@@ -279,7 +300,7 @@ RStudio project demystified
 - Working directory set to the project directory
   - History and workspace data reloaded (if they are saved the last time)
 - An .Rprofile file can be created in the projects base directory
-  - Can be handy if you want certain packages to be loaded by default each time you start that project.
+  - Can be handy if you want certain packages to be loaded by default each time you start that particular project.
 
 Directory structure of a project
 ========================================================
@@ -294,18 +315,19 @@ Advantages of using projects in RStudio
 - As your project becomes increasingly bigger, the number of temporary results, scripts and temporary files become hard to untangle
   - Which will make reproducing exactely what you did harder and harder...
 - If you collaborate with people it becomes even messier
-- Therefore, each new research project should have its own RStudio project
+- Therefore, each new research project should have its own RStudio project directory/folder
 
 Exercise: Creating a new project
 ========================================================
 type: alert
 ![Starting Project](../illustrations/startingProject.png)
 ***
-1. Create an R/ folder containing a projects/ folder
-2. Create a new project within the R/projects/ folder
-3. Create some subdirectories in your newly created project
+1. Go to "File" -> "New Project..." and create an RStudio project
+2. Choose to create a project in an "Existing Directory"
+3. Navigate to the folder of the downloaded course material
+4. Click on "Create Project"
 
-Any questions?
+Any questions? 
 ========================================================
 type: prompt
 

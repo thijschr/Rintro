@@ -18,7 +18,9 @@ Dim | Homogeneous | Heterogeneous
 nd  | Array       | 
 
 - *Homogeneous*: Contents must be of the same type
-- *Heterogeneous*: Contents can be of different type
+- *Heterogeneous*: Contents can be of different type  
+
+We will talk about all these data structures, except arrays
 
 Vectors
 ========================================================
@@ -26,6 +28,7 @@ type: section
 
 - The fundamental data type in R  
 - Consists of two basic flavours: *atomic vector* and *lists*
+  - First we look at *atomic vectors*, while we will introduce *lists* in the end
 - **OBS!** Use str(), short for structure, when trying to understand 
 the structure of any R data structure
 
@@ -36,7 +39,7 @@ Properties of vectors
 typeof()           # What it is
 length()           # How long it is
 attributes()       # Additional metadata
-names()            # The most common attribute
+names()            # Most common attribute
 
 # Testing and coercing
 is.vector()                  # Testing
@@ -48,6 +51,7 @@ attributes apart from names
 
 Atomic vectors
 ========================================================
+Can be:
 - logical
 - integer  
 - numeric
@@ -63,14 +67,17 @@ char <- c("these", "are", "some", "strings")
 
 seq()
 ========================================================
+A common way of creating a vector is by use of the **c()** 
+(concatenate) function, but **seq()** is also often used
 ```{r, sequence, eval = TRUE}
 seq(from = 0, to = 10, by = 2)
 seq(from = 0, to = 1, length = 11)
 ```
-**OBS!** seq() is handy to use in loops
+**OBS!** As we will see later, seq() is handy to use in loops
 
 rep()
 ========================================================
+**rep()** is also a common way of creating a vector
 ```{r, repeat, eval = TRUE}
 rep(x = NA, times = 7)
 rep(x = c(5, 6, 7), times = 3)
@@ -87,7 +94,8 @@ for(i in seq(10)) if(i %%2 == 0) z <- c(z, i)
 z
 ```
 - %% is the modulo operator, giving reminders upon division  
-- **OBS!** This is an artificial example
+- **OBS!** This is an artificial example - How could we have made this vector
+in a more efficient and elegant way?
 
 NA vs. NULL
 ========================================================
@@ -153,7 +161,7 @@ x <- c(x[1:3], 13, x[4])
 x
 ```
 
-Factors: dealing with qual data
+Vectors of qualitative data
 ========================================================
 ```{r, factor, eval = TRUE}
 x <- factor(c("a", "a", "b", "c"))
@@ -199,13 +207,16 @@ Exercise: Atomic vectors
 type: alert
 1. Create vectors using different methods such as c(), seq(), and rep()
 2. Extract different elements of the vectors using indexing (also negative indexing)
-3. Create a factor vector
-4. Create two vectors of unequal length
+3. Apply some filtering on some of the created vectors
+4. Create a factor vector
+5. Create two vectors of unequal length
   - Combine them using mathematical operations
 
 Any questions?
 ========================================================
 type: prompt
+
+Regarding (atomic) vectors
 
 Matrices
 ========================================================
@@ -213,30 +224,36 @@ type: section
 - A *matrix* is a vector with two additional attributes:
   - the number of rows
   - the number of columns
-- **Remember** - a matrix is a *homogeneous* data type
+- **Remember:** a matrix is a *homogeneous* data type
+  - What does that mean again?
 
 Creating matrices
 ========================================================
-- Subscripts of rows and columns starts with 1
+- We can use the **matrix()** function to create a matrix from scratch
 - Unless told differently, R stores a matrix column-wise
-- One way to create a matrix is by using the **matrix()** function
+- Just like for vectors, subscripts or indices of rows and columns in a matrix
+starts with 1
 
-Creating matrices using matrix()
+Creating a matrix using matrix()
 ========================================================
 ```{r, creatingMatrices, eval = TRUE}
-y <- matrix(c(1, 4, 7, 10), nrow = 2, ncol = 2)
+y<-matrix(c(1, 4, 7, 10), nrow = 2, ncol = 2)
 y
+as.vector(y)  # Recovering the input vector
 ```
+- What happened here?  
+- In this case, do I have to specify both the nrow and ncol arguments?
+
 
 Storing matrices by row
 ========================================================
 ```{r, matricesByRow, eval = TRUE}
-z <- matrix(c(1, 4, 7, 10), nrow = 2, byrow = T)
+z<-matrix(c(1, 4, 7, 10), nrow=2, byrow=T)
 z
 y        # Compare with by column
 ```
 
-Creating an empty matrix
+Creating an "empty" matrix
 ========================================================
 ```{r, emptyMatrix, eval = TRUE}
 e <- matrix(data = NA, ncol = 3, nrow = 3,
@@ -246,8 +263,9 @@ e <- matrix(data = NA, ncol = 3, nrow = 3,
             )
 e
 ```
+- This is handy because you can populate the matrix with data later on
 - ***OBS!*** Watch the automatic indentation of brackets
-- Handy because you can populate the matrix with data later on
+
 
 Matrix indexing
 ========================================================
@@ -261,7 +279,7 @@ Matrix filtering
 ========================================================
 ```{r, matrixFilt, eval = TRUE}
 z
-z[z[, 1] == 7, ]
+z[z[, 1] == 7, ]   # OBS! z[rows, cols]
 z[, z[2, ] >= 9]
 ```
 
@@ -316,7 +334,7 @@ length(z)     # Length of matrix z
 
 A matrix is just a vector, but ... III
 ========================================================
-But are different:
+... They are different:
 ```{r, matrixIsVectButIII, eval = TRUE}
 str(x)      # Class of vector
 str(z)      # Class of matrix
@@ -327,6 +345,7 @@ Names of rows and columns
 - The natural way to refer to rows and columns in a matrix is by use of row and column numbers
 - The **colnames()** and **rownames()** functions provide means of naming rows and columns of a matrix
 - It is especially handy to give column and row names when you want to inspect the contents of the matrix
+- As well as when you simply want to be reminded what is stored in the rows and columns
 
 Names of rows and columns II
 ========================================================
@@ -334,7 +353,7 @@ Names of rows and columns II
 colnames(z) <- c("speciesA", "speciesB")
 rownames(z) <- c("1", "2")
 z
-str(z)
+str(z)   # The dimnames attribute added
 ```
 
 c() and cbind()
@@ -392,7 +411,7 @@ I recommend using **.csv**-files
 ```{r, readCsv, eval = TRUE}
 env<-read.csv("../data/envVarSomeRaw.csv",
               header = TRUE)
-env
+env      # This is a data frame
 ```
 
 Output of tabular data
@@ -404,7 +423,9 @@ write.csv(x = obs,
           row.names = FALSE)
 ```
 - *x* is the object to be written
+  - It is the *obs* object we just made
 - *file* is the file you want the data to be written to
+  - Use of paths relative to our project directory
 - Excluding the rownames can often be wise
 
 Inspection of data frames
@@ -412,13 +433,14 @@ Inspection of data frames
 ```{r, strDF, eval = TRUE}
 str(env[c(1:5), ])
 ```
-**OBS!** For brevity I am only showing the first five observations
+- **OBS!** For brevity I am only showing the first five observations
+- Always use the **str()** function to make sure your data is in the format you intend and want it to be
 
 Inspection of data frames II
 ========================================================
 ```{r, headDF, eval = TRUE}
-head(env, 3)
-tail(env, 3)
+head(env, 3)  # First three observations
+tail(env, 3)  # Last three observations
 ```
 
 Adding a column
@@ -432,7 +454,7 @@ env
 Removing a column
 ========================================================
 ```{r, remColDF, eval = TRUE}
-env <- env[, -7]
+env <- env[, -7]   # Easiest by col number
 env
 ```
 
@@ -474,7 +496,7 @@ is.vector(env[1:5, ]$TN)
 Avoiding dimension reduction II
 ========================================================
 ```{r, dimRedDFII, eval = TRUE}
-# Extracting a one-dimensional subset returns a vector
+# Apply the drop = FALSE argument to avoid dimension reduction
 env[1:5, 1, drop = FALSE]
 is.data.frame(env[1:5, 1, drop = FALSE])
 ```
@@ -493,6 +515,7 @@ type: alert
 
 Any questions?
 ========================================================
+type: prompt
 Regarding data frames
 
 Lists
@@ -505,7 +528,7 @@ type: section
 Creating lists
 ========================================================
 ```{r, createList, eval = TRUE}
-L <- list(first = c("Kim", "Oda", "Ola"),
+L <- list(name = c("Kim", "Oda", "Ola"),
           age = c(19, 23, 25),
           nationality = c("DE", "N", "N"))
 L
@@ -514,7 +537,7 @@ L
 List tags are optional
 ========================================================
 ```{r, createListII, eval = TRUE}
-# Tag names are optional
+# A list without tags
 L2 <- list(c("Kim", "Oda", "Ola"),
            c(19, 23, 25),
            c("S", "DK", "N"))
@@ -532,8 +555,8 @@ Accessing list components
 ========================================================
 ```{r, listAccess, eval = TRUE}
 # Three ways to access individual components of a list
-L$first
-L[["first"]]
+L$name
+L[["name"]]
 L[[1]]
 ``` 
 
@@ -541,9 +564,9 @@ Accessing list values
 ========================================================
 ```{r, listAccessII, eval = TRUE}
 # Three ways to access values of a list
-L$first[1]
-L[["first"]][1]
-L[[1]][1]
+L$name[1]
+L[["name"]][1:2]
+L[[1]][c(1, 3)]
 ``` 
 
 Modelling output is a list

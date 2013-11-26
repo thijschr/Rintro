@@ -19,7 +19,7 @@ help.start() and help()
 # General R help
 help.start()
 
-# Help on specific command
+# Help on a specific command
 help(plot)  
 ?plot              # Alternative way
 ```
@@ -27,12 +27,13 @@ help(plot)
 apropos() and example()
 ========================================================
 ```{r, apropos&example, eval = FALSE}
-# Returns a list containing sting foo
+# Returns a list containing string foo
 apropos("foo")
 
-# Return an of function foo
+# Return examples of function foo
 example(foo)  
 ```
+
 Vignettes
 ========================================================
 ```{r, vignettes, eval = FALSE}
@@ -110,7 +111,7 @@ bundled together
 R comes with several base packages installed
 ========================================================
 - Just a few are loaded at startup
-- Load only the packages you need
+- Load only the packages you need for the project you are working on
 - Why not all?
   - Slows down the system, especially help
   - Packages can have conflicts
@@ -138,8 +139,9 @@ Finding packages
 - If you don't know:
   - the name of the package you need or
   - which package(s) has/have the functions you need  
-
-Use the **RSiteSearch()** function, search the internet or refer to articles using R and the method you're interested in
+- Use the **RSiteSearch()** function
+- Search the internet 
+- Or refer to articles using R and the method you're interested in
 
 Installing packages using the GUI
 ========================================================
@@ -156,6 +158,7 @@ Installling packages directly in the console
 # Installation command
 install.packages("vegan")
 ```
+The **install.packages()** function installs package dependencies by default
 
 Managing packages
 ========================================================
@@ -177,6 +180,9 @@ Exercise: Installing packages
 type: alert
 1. Install a package using the RStudio GUI
 2. Install a package using **install.packages()** in the console
+3. Check whether there exist newer versions of installed packages
+4. If newer versions exist, then update
+5. Remove a package
 
 Any questions?
 ========================================================
