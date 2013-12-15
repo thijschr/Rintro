@@ -9,11 +9,11 @@ for the Geo-Ecology research groups (http://www.nhm.uio.no/english/research/grou
 at the Natural History Museum in Oslo.
 
 The course consists of five parts:
-1) Why R?
-2) Introduction to RStudio
-3) Help and package installation
-4) Data structures/types in R
-5) Intro to programming structures in R (loops, if-else, functions)
+1) Why R?  
+2) Introduction to RStudio  
+3) Help and package installation  
+4) Data structures/types in R  
+5) Intro to programming structures in R (loops, if-else, functions)  
 
 The presentations are R presentations made in RStudio, which are exported 
 to html5 files that can be opened in Firefox, Chrome or Safari.
