@@ -8,7 +8,7 @@ R on their own. The course was developed as an in-group, two-day course
 for the Geo-Ecology research groups (http://www.nhm.uio.no/english/research/groups/geco/) 
 at the Natural History Museum in Oslo.
 
-The course consists of five parts:
+The course consists of five parts:  
 1) Why R?  
 2) Introduction to RStudio  
 3) Help and package installation  
