@@ -78,14 +78,14 @@ Play around with the help commands
 help.start()
 help(plot)
 ?plot
-apropos(plot)
+apropos("plot")
 example(plot)
 vignette()
 help.search("ordination")
 ??"ordination"
 RSiteSearch("multivariate abundance")
 data()
-help(cars)
+help("cars")
 ```
 
 Any questions?
