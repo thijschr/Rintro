@@ -1,0 +1,191 @@
+```{r setup, include = FALSE}
+opts_chunk$set(cache = TRUE)
+```
+
+Como obtener ayuda e instalar paquetes
+========================================================
+author: Thijs Christiaan van Son
+date: 
+
+Obtener ayuda
+========================================================
+type: section
+
+**OBS!** En general, la ayuda está limitada a los paquetes que uno tiene instalado y/o cargado en workspace!
+
+help.start() y help()
+========================================================
+```{r, helpI, eval = FALSE}
+# Ayuda general del R
+help.start()
+
+# Ayuda de un comando específico
+help(plot)  
+?plot              # Manera alternativa
+```
+
+apropos() y example()
+========================================================
+```{r, apropos&example, eval = FALSE}
+# Devuelve una lista con cadena foo
+apropos("foo")
+
+# Devuelve ejemplos de la función foo
+example(foo)  
+```
+
+Vignettes
+========================================================
+```{r, vignettes, eval = FALSE}
+# Un vignette demuestra como utilizar un paquete
+vignette()    # Lista de vignettes disponibles
+
+# Vignette para el paquete foo
+vignette("foo")
+```
+**OBS!** Solo demuestra vignettes para paquetes instalados
+
+Búsqueda por temas
+========================================================
+```{r, topicSearch, eval = FALSE}
+# Búsqueda del tema de ordenación
+help.search("ordination")
+??"ordination"     # Manera alternativa
+
+# Búsqueda en manuales y listas de correos archivados
+RSiteSearch("multivariate abundance")
+```
+
+Conjuntos de datos de muestra
+========================================================
+```{r, datasets, eval = FALSE}
+## Conjuntos de datos dispobibles en R (depende de paquetes instalados)
+# Listas de conjuntos disponibles
+data()
+
+# Cargar conjunto de datos
+data(cars)
+
+# Información acerca de un conjunto de datos
+help("cars")       
+```
+
+Ejercicio: Ayuda
+========================================================
+type: alert
+Juega con los comandos de ayuda  
+```{r, Help, eval = FALSE}
+help.start()
+help(plot)
+?plot
+apropos("plot")
+example(plot)
+vignette()
+help.search("ordination")
+??"ordination"
+RSiteSearch("multivariate abundance")
+data()
+help("cars")
+```
+
+Alguna pregunta?
+========================================================
+type: prompt
+Alguna duda acerca de como obtener ayuda?
+
+Paquetes
+========================================================
+type: section
+- **OBS!** El término *library* se utiliza a menudo en lugar de *package*  
+- Personalmente prefiero **package**
+
+Qué es un paquete?
+========================================================
+Un paquete es un conjunto relacionado de:
+- funciones
+- archivos de ayuda y 
+- archivos de datos  
+
+todo agrupado
+
+R viene con varios paquetes de base instalados
+========================================================
+- Sólo algunos se cargan al iniciar R
+- Carga solo los paquetes que necesitas para el projecto en que estas trabajando
+- Por qué no cargar todos?
+  - El sistema se pone lento, especialmente el ayuda
+  - Puede existir conflictos entre paquetes
+  - Objetos y funciones puedene tener nombres iguales
+  
+Cargando paquetes: Panel de paquetes
+========================================================
+![Packages Tab](../illustrations/packagesTab.png)
+
+Los paquetes se pueden cargar o descargar haciendo clic sobre ellos
+
+Loading packages: In script
+========================================================
+```{r, library, eval = TRUE}
+# Cargar o descargar paquetes
+library(vegan)
+detach("package:vegan", unload=TRUE)
+require(mgcv)
+```
+- **library()** más utilizado, sin embarge, hay varios que no le gusta ya que puede causar confusión entre *packages* y *libraries*
+- Recomiendo utilizar **require()**, que también es el comando que debes usar si tienes que cargar un paquete dentro de una función
+
+Buscando paquetes
+========================================================
+- En caso que no sabes:
+  - el nombre del paquete que necesitas o
+  - qué paquete(s) tiene(n) las funciones que necesitas  
+- Ùtiliza la función **RSiteSearch()**
+- Busca por internet 
+- O busca en artículos donde utilizan R y que refieren al método que te interesa
+
+Instalación de paquetes utilizando la interfaz gráfica de usuario
+========================================================
+![Install Packages](../illustrations/installPackages.png)
+
+Escribe los nombres de los paquetes que quieres instalar
+
+Instalación de paquetes directamente en la consola
+========================================================
+```{r, packageInstall, eval = FALSE}
+# Obtener ayuda de la función install.packages()
+?install.packages
+
+# Comando de instalación
+install.packages("vegan")
+```
+La función **install.packages()** instala las dependencias de paquetes por defecto
+
+Manejo de paquetes
+========================================================
+```{r, packageManagement, eval = FALSE}
+## Algunos comandos de manejo de paquetes útiles
+
+# Una matrice de paquetes instalados para qual están disponibles versiones más recientes
+old.packages()
+
+# Actualización de paquetes instalados a la última versión
+update.packages()
+
+# Eliminar paquetes
+remove.packages()
+```
+
+Ejercicios: Instalación de paquetes
+========================================================
+type: alert
+1. Instala un paquete utlizando RStudio
+2. Instala un paquete utilizando **install.packages()** en la consola
+3. Comprueba si existen versiones nuevas de los paquetes instalados
+4. Actualiaza si existen versiones nuevas
+5. Elimina un paquete
+
+Alguna pregunta?
+========================================================
+type: prompt
+Alguna pregunta acerca de paquetes y su instalación?
+
