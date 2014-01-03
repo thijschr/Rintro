@@ -1,0 +1,191 @@
+```{r setup, include = FALSE}
+opts_chunk$set(cache = TRUE)
+```
+
+Getting help and installing packages
+========================================================
+author: Thijs Christiaan van Son
+date: 
+
+Getting help
+========================================================
+type: section
+
+**OBS!** Help is in general limited to what packages you have installed and/or loaded into workspace!
+
+help.start() and help()
+========================================================
+```{r, helpI, eval = FALSE}
+# General R help
+help.start()
+
+# Help on a specific command
+help(plot)  
+?plot              # Alternative way
+```
+
+apropos() and example()
+========================================================
+```{r, apropos&example, eval = FALSE}
+# Returns a list containing string foo
+apropos("foo")
+
+# Return examples of function foo
+example(foo)  
+```
+
+Vignettes
+========================================================
+```{r, vignettes, eval = FALSE}
+# A vignette shows how to use a package
+vignette()    # List of available vignettes
+
+# Vignette for the foo package
+vignette("foo")
+```
+**OBS!** Only shows vignettes for installed packages
+
+Topic search
+========================================================
+```{r, topicSearch, eval = FALSE}
+# Searching about the topic of ordination
+help.search("ordination")
+??"ordination"     # Alternative way
+
+# Search in manuals and archived mailing lists
+RSiteSearch("multivariate abundance")
+```
+
+Sample datasets
+========================================================
+```{r, datasets, eval = FALSE}
+## Available datasets in R, depends on packages installed
+# lists available datasets
+data()
+
+# Loads dataset
+data(cars)
+
+# Information about dataset
+help("cars")       
+```
+
+Exercise: Help
+========================================================
+type: alert
+Play around with the help commands  
+```{r, Help, eval = FALSE}
+help.start()
+help(plot)
+?plot
+apropos("plot")
+example(plot)
+vignette()
+help.search("ordination")
+??"ordination"
+RSiteSearch("multivariate abundance")
+data()
+help("cars")
+```
+
+Any questions?
+========================================================
+type: prompt
+Any questions regarding how to get help?
+
+Packages
+========================================================
+type: section
+- **OBS!** The term *library* is often used in place of *package*  
+- We will stick to the term **package**
+
+What is a package?
+========================================================
+A package is a related set of:
+- functions
+- help files and
+- data files  
+
+bundled together
+
+R comes with several base packages installed
+========================================================
+- Just a few are loaded at startup
+- Load only the packages you need for the project you are working on
+- Why not all?
+  - Slows down the system, especially help
+  - Packages can have conflicts
+  - Same object/function names
+  
+Loading packages: Packages tab
+========================================================
+![Packages Tab](../illustrations/packagesTab.png)
+
+Packages can be loaded or unloaded by clicking on them
+
+Loading packages: In script
+========================================================
+```{r, library, eval = TRUE}
+# To load or unload packages
+library(vegan)
+detach("package:vegan", unload=TRUE)
+require(mgcv)
+```
+- **library()** most often used, however, many dislikes it because of the confusion between *packages* and *libraries*
+- It can be a good idea to stick to **require()**, which is also the command you need to use if loading a package inside a function
+
+Finding packages
+========================================================
+- If you don't know:
+  - the name of the package you need or
+  - which package(s) has/have the functions you need  
+- Use the **RSiteSearch()** function
+- Search the internet 
+- Or refer to articles using R and the method you're interested in
+
+Installing packages using the GUI
+========================================================
+![Install Packages](../illustrations/installPackages.png)
+
+Write in the name(s) of the package(s) you want to install
+
+Installling packages directly in the console
+========================================================
+```{r, packageInstall, eval = FALSE}
+# Get help about the install.packages() function
+?install.packages
+
+# Installation command
+install.packages("vegan")
+```
+The **install.packages()** function installs package dependencies by default
+
+Managing packages
+========================================================
+```{r, packageManagement, eval = FALSE}
+## Some other handy package management commands
+
+# A matrix of installed packages for which newer versions are available
+old.packages()
+
+# Update installed packages to the latest version
+update.packages()
+
+# Remove package(s)
+remove.packages()
+```
+
+Exercise: Installing packages
+========================================================
+type: alert
+1. Install a package using the RStudio GUI
+2. Install a package using **install.packages()** in the console
+3. Check whether there exist newer versions of installed packages
+4. If newer versions exist, then update
+5. Remove a package
+
+Any questions?
+========================================================
+type: prompt
+Any questions regarding packages and their installation?
+
