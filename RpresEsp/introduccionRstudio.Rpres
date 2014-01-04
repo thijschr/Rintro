@@ -1,0 +1,332 @@
+```{r setup, include = FALSE}
+# require(knitr)
+opts_chunk$set(cache = TRUE)
+```
+
+Introducción al RStudio
+========================================================
+author: Thijs Christiaan van Son
+date: 
+
+Un primer vistazo
+========================================================
+type: section
+![RstudioStartUp](../illustrations/rstudioFirstLook.png)
+
+Configuración de las opciones
+========================================================
+![RSoptionsSettings](../illustrations/rstudioOptions.png)
+
+Menú de opciones globales
+========================================================
+![RSglobalOptsMenu](../illustrations/rstudioGlobalOptions.png)
+
+Ejercicio: Personalizar RStudio
+========================================================
+type: alert
+
+Por ahora, dejar de lado la apariencia
+
+La consola de R
+========================================================
+type: section
+El intérprete de R!
+
+Ejecución de comandos en la consola de R
+========================================================
+![RSconsole](../illustrations/console.png)  
+![RSconsole](../illustrations/console2.png)  
+- La consola puede ser utilizado como calculadora
+- Presiona **Enter** para ejecutar el comando     
+- Creando un vector *v* utilizando la función **seq()**  
+- Donde se experimenta y comprueba codigo
+
+Ejercicio: La consola de R
+========================================================
+type: alert
+- Haz operaciones matemáticas simples
+- Crea dos vectores *a* y *b* y haz alguna operación matemática con ellos
+  - Adición
+  - Multiplicacón
+  - División
+  - Log (cuál es la base por defecto de la función de **log()**?)
+- **Consejo:** Utiliza la función **c()** para concatenar 
+- Escribe **?c** en la consola para obtener ayuda de la función de **c()**
+
+El editor de código de fuente
+========================================================
+type: section
+![sourceEditor](../illustrations/source.png)
+- Muy potente  
+- El panel más importante
+- Aquí es donde pasarás la mayor parte de tu tiempo
+- Ejectuar líneas de código con **Ctrl+Enter**
+
+Abrir un script
+========================================================
+![sourceEditor](../illustrations/startingOpeningScript.png)
+
+Ejercicio: Abre, escribe y ejecuta un script de R
+========================================================
+type: alert
+- Abre un script de R en RStudio
+- Define dos vectores numéricos *x* and *y*, cada uno de longitud 4
+- Define un nuevo vector *z* que muliplica *x* y *y*
+- Ejecuta el script
+
+Contenidos de otros paneles
+========================================================
+type: section
+
+Panel de historia
+========================================================
+![History Tab](../illustrations/historyTab.png)
+- Realiza un seguimiento de código interpretado (es decir, el código enviado a y ejecutado en la consola)
+- Selecciona el código haciendo clic en él y envíalo a la consola/fuente
+- Después viene más sobre como navigar la historia de comandos 
+
+Panel de archivos
+========================================================
+![Files Tab](../illustrations/filesTab.png)
+- Un simple explorador de archivos
+- Los archivos se pueden abrir haciendo clic sobre ellos 
+
+Panel de paquetes
+========================================================
+![Packages Tab](../illustrations/packagesTab.png)
+- Resumen de paquetes instalados
+- Haz click sobre un paquete para obtener un resumen de su funciones
+
+Panel de ayuda
+========================================================
+![Help Tab](../illustrations/helpTab.png)
+- Busca directamente en la ventana de búsqueda o escribiendo **?NameOfFunction** en la consola
+
+Panel de Plots
+========================================================
+![Plot Tab](../illustrations/plotTab.png)
+***
+Más después
+
+Panel de presentaciones
+========================================================
+![Presentation Tab](../illustrations/presentationTab.png)
+
+Alguna pregunta?
+========================================================
+type: prompt
+
+- Ahora vamos a ver las herramientas para escribir código de R en RStudio.
+
+Codificación en RStudio
+========================================================
+type: section
+- Resaltado de sintaxis
+- Indentación
+- Secciones de código
+- Comentarios
+- Completar por tabulación
+- Navegar por el histórico de comandos en la consola
+- Calidad de código
+- Buscar y reemplezar
+
+Resaltado de sintaxis
+========================================================
+![Syntax Highlighting](../illustrations/syntaxhighlighting.png)
+
+Ventajas de resaltado de sintaxis
+========================================================
+![Syntax Highlighting](../illustrations/syntaxhighlighting.png)
+***
+- Proporciona colores de scripts de forma automática  
+- Hace que sea más fácil de leer  
+- Útil para evitar y detectar los errores tipográficos y los errores de sintaxis
+
+Ajuste del resaltado de sintaxis
+========================================================
+![RStudio Appearance](../illustrations/rstudioAppearance.png)
+
+Ejercicio: Personalizar el resaltado de sintaxis
+=========================================
+type: alert
+```{r syntaxHighlight, eval=FALSE}
+# Escribe este script en tu panel de fuente
+a <- 3
+b <- 4
+c <- a * b
+
+x <- "Esta es una cadena de texto"
+
+cuadrado <- function(x){ x*x }
+
+cuadrado(c(a, b, c))
+```
+- Juega un poco con diferentes resaltado de sintaxis
+
+Indentación
+========================================================
+RStudio guiones de código para aumentar la legibilidad
+```{r Indentation}
+a <- rnorm(n = 10, 
+           mean = 0, 
+           sd = 1)
+a
+```
+**Precaución:** Si asignas un nuevo contenido a un objeto que ya existe, R sobrescribirá el contenido anterior sin una advertencia
+
+Secciones de código
+========================================================
+![Code Sections](../illustrations/codeSections.png)
+- Una característica de RStudio  
+- Muy útil para la navegación de código  
+- Inserte por: **Ctrl+Shift+R**
+
+Comentarios
+========================================================
+- Comenta **que** el código hace, no **cómo** lo hace
+- A menudo, secciones de código con buenos títulos descriptivos pueden ser suficientes
+- Pon un # al comienzo de un comentario (de esta manera R entiende que es un comentario)
+- Pon comentarios on/off utilizando **Ctrl+Shift+C**
+
+Historia de comandos
+========================================================
+- Ya hemos visto el panel de historia
+- Histora en la consola: **teclas de flecha** o **Ctrl+Up**
+
+![History List](../illustrations/historyList.png)
+
+Ejercicio: Completar por tabulación
+========================================================
+type: alert
+- Completar funciones e argumentos  
+- Completar objectos  
+- Completar nombres de archivos
+- Completar bracket y quote
+  - Bracket y quotes correspondientes se resaltan
+
+Calidad de código: Legibilidad
+========================================================
+```{r, codeReadability, eval = FALSE}
+# Compara:
+
+plot(x=depth,y=TOC,main="Depth-TOC relation",pch=21,col="blue")
+
+# con
+
+plot(x = depth,
+     y = TOC,
+     main = "Depth-TOC relation",
+     # sub = "This is superfluous",
+     pch = 21,
+     col = "blue")
+```
+**OBS!** Espacio, líneas multiples, uso de nombres de argumentos
+
+Calidad de código: Convenciones de nombres
+========================================================
+```{r, namingConventions, eval = FALSE}
+# Compara
+a <- 2             # abundancia especie A
+d <- 3             # diversidad
+
+# con
+abundA <- 2
+diversidad <- 3
+```
+- Recomiendo evitar **.** y **_** en nombres de objetos
+- Para nombres compuestos de objetos, a menudo primero pongo nombres de objetos en minúscula y luego de mayúsculas
+- **OBS!** Nunca pon espacio adentro de los nombres!
+
+Buscar y reemplazar
+========================================================
+![Find Replace](../illustrations/findReplace.png)
+- Invoca por **Ctrl+F**
+- Puede diferenciar entre mayúsculas y minúsculas
+- Puede ser limitado a una selección del código
+
+Alguna pregunta?
+========================================================
+type: prompt
+
+Alguna pregunta sobre codificación en RStudio?
+
+Exportación de plots/figuras
+========================================================
+type: section
+
+Ejercicio: Exportación de una figura
+========================================================
+type: alert
+
+1. Crea dos vectores *a* y *b* utilizando la función **rnorm()**
+2. Plotéalos uno contra el otro
+3. Haz exportaciones de la figura utilzando diferentes formatos disponibles en el panel de plots
+4. Àbrelas e inspecciona su calidad
+
+Exportación directa de plots/figuras
+========================================================
+```{r, directPlotExport, eval = FALSE}
+a <- rnorm(mean = 0, sd = 1, n = 10)
+b <- rnorm(mean = 0, sd = 1, n = 10)
+
+pdf(file = "exportacionDirecta.pdf", 
+    width = 5, 
+    height = 5)
+
+plot(x <- a, y <- b,
+     main = "Exportación directa")
+dev.off()
+```
+- Todo entre la llamada al **pdf()** y **dev.off()** se escribirá al archivo pdf
+- Otras opciones: **png()**, **tiff()**, **svg()**, **postscript()** ++
+
+Alguna pregunta?
+========================================================
+type: prompt
+
+Alguna pregunta sobre exportación de plots/figuras?
+
+Manejo de proyectos
+========================================================
+type: section
+![Project subdirectories](../illustrations/projectSubdirectories.png)
+
+Cómo funcion un proyecto de RStudio?
+========================================================
+- En realidad sólo un directorio
+- Puede (y a menudo debería) contener subdirectorios
+- Directorio de trabajo (working directory) se establece en el directorio del proyecto
+  - Historia y datos del workspace recargado
+- Puedes crear un archivo .Rprofile en el directorio base del proyecto
+  - Puede ser útil si deseas que ciertos paquetes se cargan por defecto cada vez que se inicia ese proyecto particular
+
+Estructura de un directorio de un proyecto
+========================================================
+- **R:** Directorio del los scripts
+- **datos:** Todos los datos que se necesita para este proyecto
+- **resultados:** Figuras y otros archivos de resultados
+- **doc:** Documentos relacionados al proyecto
+- **informes:** Directorio de informes generados por los análisis
+
+Ventajas del uso de proyectos en RStudio
+========================================================
+- A medida que su proyecto se hace cada vez más grande, el número de resultados temporales, scripts y archivos temporales se convierten en difíciles de desenredar
+  - Lo que hará que la reproducción exacta de lo que se hizo queda cada vez más y más difícil ...
+- Si colaboras con más gente todo If you collaborate with people se hace aún más desordenado
+- Por lo tanto, cada nuevo proyecto de investigación debe tener su propio directorio de proyecto de RStudio
+
+Ejercicio: Crear un nuevo proyecto
+========================================================
+type: alert
+![Starting Project](../illustrations/startingProject.png)
+***
+1. Ir a "File" -> "New Project..." y crea un proyecto de RStudio
+2. Elije crear un proyecto en un "Existing Directory"
+3. Navega al directorio del material descargado del curso
+4. Haz click en "Create Project"
+
+Alguna pregunta? 
+========================================================
+type: prompt
+
+Alguna pregunta relacionado al manejo de proyectos en RStudio?
