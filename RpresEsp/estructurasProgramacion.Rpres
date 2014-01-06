@@ -1,0 +1,416 @@
+```{r setup, include = FALSE}
+opts_chunk$set(cache = FALSE)
+```
+
+Intro to programming Structures in R
+========================================================
+author: Thijs Christiaan van Son
+date: 
+
+Ecologists and programming
+========================================================
+- Constructing loops and functions may not be the first thing ecologists new to R
+would spend time learning
+- These techniques are often perceived as difficult to grasp in the beginning
+- However, the reward can be huge in terms of time saved and the possibility to do
+more advanced analyses
+- We will have a short introduction to *loops*, *flow control*, and *functions*
+
+Loops
+========================================================
+type: section
+Workflow of a *for* loop
+
+- for*i* is from 1 to 10  
+    - data manipulation #1   for i = 1  
+    - ...                    for i = 1
+    - data manipulation #n   for i = 1
+- end of loop
+
+When the end of the loop is reached, the loop starts over again with i = 2 and so on
+
+For loops: a first example
+========================================================
+```{r, firstLoop, eval = TRUE}
+x <- c(3, 1, 6, 4)
+for (number in x) {     # a for loop
+  print(number^2)
+}
+```
+- In this example we only do one data manipulation per iteration, namely, we square the numbers in vector *x*
+- This is done one-by-one, first the first component of vector *x*, then the second component and so on, until we have iterated over all components
+
+For loops: a more applied example
+========================================================
+This is the *env* data frame we loaded earlier. Imagine we want to correlate Depth
+with all the other variables and then store the results in a data frame and export to csv
+```{r, load_env, eval = TRUE, echo = FALSE}
+env<-read.csv("../data/envVarSomeRaw.csv",
+              header = TRUE)
+env
+```
+
+For loops: a more applied example II
+========================================================
+**Workflow** for this task:  
+- 1) Create vectors to store tau and p-values  
+- 2) Code the for loop  
+  - for loop with five iterations
+  - in each iteration, run **cor.test()**  
+  - in each iteration, extract tau and p-values  
+  - end of loop  
+- 3) Store the results in a data frame  
+- 4) Write results to a csv file  
+- 5) Inspect the csv file  
+
+
+For loops: a more applied example III
+========================================================
+```{r, secondLoop, eval = TRUE}
+## Workflow
+# 1) Create vectors to store tau and p-values
+tau <- rep(NA, length(names(env)[-6]))
+pval <- rep(NA, length(names(env)[-6]))
+tau
+pval
+```
+
+For loops: a more applied example IV
+========================================================
+```{r, secondLoopIIa, eval = TRUE}
+# 2) Code the for loop
+for (i in seq(ncol(env[-6]))) {
+  tmp.i <- env[, i]
+  test.i <- cor.test(x = env$Depth,
+                     y = tmp.i,
+                     method = "k")
+  tau[i] <- test.i$estimate
+  pval[i] <- test.i$p.value
+}
+# 3) Store the results in a data frame
+resDF <- data.frame(var = names(env)[-6], 
+                    tau = tau,
+                    pvalue = pval)
+```
+
+For loops: a more applied example V
+========================================================
+```{r, secondLoopIII, eval = TRUE}
+# 4) Write results to a csv file
+write.csv(resDF,
+          file = "../data/corrResults.csv",
+          row.names = FALSE)
+resDF     # Displaying results
+```
+5) Inspect the resulting csv file
+
+Exercises: Loops
+========================================================
+type: alert
+- Using a for loop, make one plot showing all the correlations 
+between Depth and the other variables in the *env* data frame
+- Write the plots to one pdf file
+- On the next slide the general workflow for each correlation plot
+is shown, put it in a for loop and make the changes necessary to 
+iterate over all correlations
+- You must use **par(mfrow = c(3, 2))** to specify how many columns and 
+rows you want in the compound plot - put it before the call to the 
+**plot()** function
+
+Exercises: Loops II
+========================================================
+type: alert
+```{r, secondLoopIV, eval = FALSE}
+pdf(file = "../data/loopExample.pdf",
+    height = 5, width = 5)
+plot(x = env$Depth, y = env$TN,
+     main = "Correlation with TN",
+     xlab = "Depth",
+     ylab = "TN",
+     type = "n")
+points(x = env$Depth, y = env$TN,
+       pch = 21,
+       col = "black", bg = "red")
+dev.off()
+```
+
+Exercises: Loops III
+========================================================
+type: alert
+
+**Hint** - Identify the arguments that needs to be changed 
+(i.e., made generic)
+
+```{r, secondLoopV, eval = FALSE, echo = FALSE}
+pdf(file = "../data/multipleCorrPlot.pdf",
+    height = 9, width = 6)
+
+par(mfrow = c(3, 2))
+
+for (i in seq(ncol(env[-6]))) {
+  env.i <- env[, i]
+  plot(x = env$Depth, y = env.i,
+     main = paste("Correlation with", 
+                  names(env)[i], sep = " "),
+     xlab = "Depth",
+     ylab = names(env)[i],
+     type = "n")
+  points(x = env$Depth, y = env.i,
+       pch = 21,
+       col = "black", bg = "red")
+}
+
+dev.off()
+```
+
+Any questions?
+========================================================
+type: prompt
+
+Regarding loops
+
+
+Flow control (if-else)
+========================================================
+type: section
+Flow control is handy when how you want to proceed in your analysis 
+is dependent on a condition
+
+This is typically controlled by if-else statements
+
+The if-else statement works as follows:  
+**if (cond) expression1 else expression2**  
+
+
+A simple if-else example
+========================================================
+```{r, ifElseSimpleIa, eval = TRUE}
+a = 3
+
+y <- if(a == 3) 
+  { a } else  # else on same line as the }
+    { a + 1 }
+y
+```
+**OBS!** The **else** statement needs to be on the same line as 
+the closing **{** of the first expression
+
+A simple if-else example II
+========================================================
+
+```{r, ifElseSimpleIb, eval = TRUE}
+a = 1    # Changing the value of a
+
+y <- if(a == 3) 
+  { a } else  
+    { a + 1 }
+y
+```
+
+Another if-else example
+========================================================
+```{r, ifElseExample2a, eval = FALSE}
+# Calculating the mean of variables in env df
+avg <- apply(env, MARGIN = 2, mean)
+
+# if-else statement within a loop
+# If the value is above some threshold, print
+# the value, if not print something else
+for (i in seq(length(avg))) 
+{
+  avg.i <- avg[i]
+  if(avg.i >= 5) {
+    print(avg.i) } else {
+      print("Mean value too low")
+    }
+}
+```
+
+Output of Another if-else example
+========================================================
+```{r, ifElseExample2b, eval = TRUE, echo = FALSE}
+# Calculating the mean of variables in env df
+avg <- apply(env, MARGIN = 2, mean)
+
+# if-else statement within a loop
+# If the value is above some threshold, print
+# the value, if not print something else
+for (i in seq(length(avg))) 
+{
+  avg.i <- avg[i]
+  if(avg.i >= 5) {
+    print(avg.i) } else {
+      print("Mean value too low")
+    }
+}
+
+# The average values of env df
+avg
+```
+The lower ouput box shows the average values stored in the *avg* object
+
+The ifelse() function
+========================================================
+- Takes three arguments
+  - the first argument is the condition
+  - the second argument is the treatment if the condition is **TRUE**
+  - the third argument is the treatment if the condition is **FALSE**
+- The **ifelse()** function can take a vector as input
+  - This is handy because we can avoid constructing loops
+
+Example with ifelse() function
+========================================================
+```{r, ifElseFunction, eval = TRUE}
+k <- 1:10
+k
+ifelse(k < 3 | k > 8, k, 0)
+```
+- Here we have a compound condition:
+  - if k is smaller than 3 OR k is larger than 8
+  - then return the original value of k
+  - else return 0
+
+Arithmetic and Boolean R operators
+========================================================
+Operation | Description
+--------- | -----------
+x + y     | Addition
+x - y     | Subtraction
+x * y     | Multiplication
+x / y     | Division
+x ^ y     | Exponentiation
+x %% y    | Modular arithmetic
+x %/%     | Integer division
+x == y    | Test for equality
+
+**x || y** Boolean OR (scalars)  
+**x | y** Boolean OR (vectors)
+
+***
+
+Operation | Description
+--------- | -----------
+x <= y    | Test for less than or equal to
+x >= y    | Test for larger than or equal to
+x && y    | Boolean AND for scalars
+x & y     | Boolean AND for vectors
+!x        | Boolean negation
+
+Exercise: Flow control
+========================================================
+type: alert
+
+1. Make sure you understand how if-else statements are constructed
+2. Construct some simple if-else statements using a single scalar as input
+3. Create a vector to be used as input to a call to the **ifelse()** function
+  - Create an ifelse statement with a compound condition
+4. Create a vector, then code a for loop that includes an if-else statement and that iterates over your created vector
+
+Any questions?
+========================================================
+type: prompt
+
+Regarding flow control and if-else statements
+
+
+Functions
+========================================================
+type: section
+
+- A function is simply a sequence of operations that belong naturally
+together
+- If you find yourself typing the same code sequence over and over again, 
+why not turn the code sequence into a function?
+- If you wanna see how functions are coded in R, use the **page()** function [e.g., page(lm)], which will return the code
+
+Creating a simple function
+========================================================
+Returning an object: By default, the last object defined is returned:
+```{r, simpleFunctionIa, eval = TRUE}
+# A function without arguments
+f <- function() {
+  g <- 2
+  h <- 4
+}
+
+test <- f()
+test
+```
+
+Creating a simple function II
+========================================================
+The function can return an object using **return()**:
+```{r, simpleFunctionIb, eval = TRUE}
+# Still a function without arguments
+f2 <- function() {
+  g <- 2
+  h <- 4
+  return(g)
+}
+
+f2()     # Not returning last object anymore
+```
+
+Functions with arguments
+========================================================
+Creating a function for squaring values
+```{r, functionArgs, eval = TRUE}
+square <- function(x) { # Takes x as arg
+  sqVal <- x^2
+  return(sqVal)
+}
+square(3)
+# Passing a vector to the function
+s <- c(NA, 4, 2, 9)
+square(s)
+```
+
+Function with ... argument
+========================================================
+- The ... argument allows for adding arguments that will be passed
+to functions inside the function
+- **Yes!** You can call functions within another function
+- The possibility to specify an ***...*** argument enhances the flexibility of a function
+- Lets see how this works:
+
+Function with ... argument II
+========================================================
+```{r, functionArgsII, eval = TRUE, fig.show= FALSE}
+# Making a plotting function
+plt <- function(x, y, ...) {
+  plot(x, y, 
+       type = "p",    # An ... arg
+       pch = 21,      # Another ... arg
+       bg = "red",    # Yet another ... arg
+       ...)
+}
+```
+
+Function with ... argument III
+========================================================
+```{r, functionArgsIII, eval = TRUE}
+plt(x = env$Depth, y = env$BMD,
+    main = "BMD vs. Depth")  # ... argument
+```
+
+Your own functions in *apply() functions
+========================================================
+```{r, ownFuncWithApply, eval = TRUE}
+# Using our square() function with apply
+apply(env, MARGIN = 2, square)
+```
+
+Exercises: Functions
+========================================================
+type: alert
+1. Create a function without arguments, as well as with and without a **return()** call
+2. Create a function that calculates the volum of a box given three arguments a, b, and c
+
+
+Any questions?
+========================================================
+type: prompt
+
+Regarding Functions
+
+
