@@ -2,83 +2,80 @@
 opts_chunk$set(cache = FALSE)
 ```
 
-Intro to programming Structures in R
+Introducción a estructuras de programación en R
 ========================================================
 author: Thijs Christiaan van Son
 date: 
 
-Ecologists and programming
+Biólogos y programación
 ========================================================
-- Constructing loops and functions may not be the first thing ecologists new to R
-would spend time learning
-- These techniques are often perceived as difficult to grasp in the beginning
-- However, the reward can be huge in terms of time saved and the possibility to do
-more advanced analyses
-- We will have a short introduction to *loops*, *flow control*, and *functions*
+- Construir bucles y funciones probablemente no es lo primero biólogos nuevos a R quieren  dedicar tiempo a aprender
+- Estas técnicas a menudo se perciben como difícil de entender al principio
+- Sin embargo, la recompensa puede ser enorme en términos de ahorro de tiempo y la posibilidad de hacer análisis más avazados
+- Aqu'vamos a tener una introducción breve a *bucles*, *control de flujo* y como crear*funciones*
 
-Loops
+Bucles
 ========================================================
 type: section
-Workflow of a *for* loop
+Flujo de trabajo para un *bucle*
 
-- for*i* is from 1 to 10  
-    - data manipulation #1   for i = 1  
-    - ...                    for i = 1
-    - data manipulation #n   for i = 1
-- end of loop
+- for*i* entre 1 y 10  
+    - manipulacion de datos #1   for i = 1  
+    - ...                    
+    - manipulación de datos #n   for i = n
+- fin del bucle
 
-When the end of the loop is reached, the loop starts over again with i = 2 and so on
+Cuando se alcanza el final del bucle, el bucle comienza de nuevo con i = 2 y así sucesivamente
 
-For loops: a first example
+Bucles tipo "for": un primer ejemplo
 ========================================================
 ```{r, firstLoop, eval = TRUE}
-x <- c(3, 1, 6, 4)
-for (number in x) {     # a for loop
-  print(number^2)
+x <- c(3, 1, 6)
+for (numero in x) {     # un bucle "for"
+  print(numero^2)
 }
 ```
-- In this example we only do one data manipulation per iteration, namely, we square the numbers in vector *x*
-- This is done one-by-one, first the first component of vector *x*, then the second component and so on, until we have iterated over all components
+- En este ejemplo hacemos solamente una manipulación de datos por iteración, es decir, elevamos al cuadrado los números en el vector *x*
+- Esto se hace uno por uno, primero el primer componente del vector *x*, despúes el segundo componente y así sucesivamente, hasta que hayamos iterado sobre todos los componentes
 
-For loops: a more applied example
+Un bucle "for": ejemplo más aplicado
 ========================================================
-This is the *env* data frame we loaded earlier. Imagine we want to correlate Depth
-with all the other variables and then store the results in a data frame and export to csv
+Este es el data frame *env* que cargamos antes. Imaginamos que queremos correlacionar profundidad con todas las otras variables y luego almacenar los resultados en una trama de datos y exportar a csv
 ```{r, load_env, eval = TRUE, echo = FALSE}
 env<-read.csv("../data/envVarSomeRaw.csv",
               header = TRUE)
 env
 ```
 
-For loops: a more applied example II
+Un bucle "for": ejemplo más aplicado II
 ========================================================
-**Workflow** for this task:  
-- 1) Create vectors to store tau and p-values  
-- 2) Code the for loop  
-  - for loop with five iterations
-  - in each iteration, run **cor.test()**  
-  - in each iteration, extract tau and p-values  
-  - end of loop  
-- 3) Store the results in a data frame  
-- 4) Write results to a csv file  
-- 5) Inspect the csv file  
+**Flujo de trabajo** para esta tarea:  
+- 1) Crea vectores para almacenar valores de tau y p  
+- 2) Codificar el bucle "for"  
+  - bucle for con cinco iteraciones
+  - en cada iteración, ejecute **cor.test()**  
+  - en cada iteración, extrae valores de tau y p  
+  - fin del bucle  
+- 3) Almacena los resultados en un data frame  
+- 4) Escribe resultados a un archivo csv  
+- 5) Inspecciona el archivo csv  
 
 
-For loops: a more applied example III
+Un bucle "for": ejemplo más aplicado III
 ========================================================
 ```{r, secondLoop, eval = TRUE}
-## Workflow
-# 1) Create vectors to store tau and p-values
+## Flujo de trabajo
+# 1) Crea vectores para almacenar valores de tau y p
 tau <- rep(NA, length(names(env)[-6]))
 pval <- rep(NA, length(names(env)[-6]))
 tau
 pval
 ```
 
-For loops: a more applied example IV
+Un bucle "for": ejemplo más aplicado IV
 ========================================================
 ```{r, secondLoopIIa, eval = TRUE}
-# 2) Code the for loop
+# 2) Codifíca el bucle for
 for (i in seq(ncol(env[-6]))) {
   tmp.i <- env[, i]
   test.i <- cor.test(x = env$Depth,
@@ -87,44 +84,41 @@ for (i in seq(ncol(env[-6]))) {
   tau[i] <- test.i$estimate
   pval[i] <- test.i$p.value
 }
-# 3) Store the results in a data frame
+# 3) Almacena los resultados en undata frame
 resDF <- data.frame(var = names(env)[-6], 
                     tau = tau,
                     pvalue = pval)
 ```
 
-For loops: a more applied example V
+Un bucle "for": ejemplo más aplicado V
 ========================================================
 ```{r, secondLoopIII, eval = TRUE}
-# 4) Write results to a csv file
+# 4) Escribe resultados a un archivo csv
 write.csv(resDF,
           file = "../data/corrResults.csv",
           row.names = FALSE)
-resDF     # Displaying results
+resDF     # Mostrando resultados
 ```
-5) Inspect the resulting csv file
+5) Inspecciona el archivo csv
 
-Exercises: Loops
+Ejercicio: Bucles
 ========================================================
 type: alert
-- Using a for loop, make one plot showing all the correlations 
-between Depth and the other variables in the *env* data frame
-- Write the plots to one pdf file
-- On the next slide the general workflow for each correlation plot
-is shown, put it in a for loop and make the changes necessary to 
-iterate over all correlations
-- You must use **par(mfrow = c(3, 2))** to specify how many columns and 
-rows you want in the compound plot - put it before the call to the 
-**plot()** function
+- Usando un bucle for, haz figuras que muestra todas las correlaciones
+entre la profundidad y las otras variables en el data frame *env*
+- Escribe todas las figuras a un archivo de pdf
+- En la siguiente diapositiva el flujo de trabajo general para cada figura de correlacións
+se muestra, pónlo en un bucle y haz los cambios necesarios para iterar sobre todas las correlaciones
+- Tienes que usar **par(mfrow = c(3, 2))** para especificar el número de filas y columnas que quieres en la figura compuesta. pónlo antes de la llamada a la función **plot()**
 
-Exercises: Loops II
+Ejercicio: Bucles II
 ========================================================
 type: alert
 ```{r, secondLoopIV, eval = FALSE}
 pdf(file = "../data/loopExample.pdf",
     height = 5, width = 5)
 plot(x = env$Depth, y = env$TN,
-     main = "Correlation with TN",
+     main = "Correlación con TN",
      xlab = "Depth",
      ylab = "TN",
      type = "n")
@@ -134,12 +128,12 @@ points(x = env$Depth, y = env$TN,
 dev.off()
 ```
 
-Exercises: Loops III
+Ejercicio: Bucles III
 ========================================================
 type: alert
 
-**Hint** - Identify the arguments that needs to be changed 
-(i.e., made generic)
+**Hint** - Identifica los argumentos que necesitan ser cambiados 
+(i.e., hecho genérico)
 
 ```{r, secondLoopV, eval = FALSE, echo = FALSE}
 pdf(file = "../data/multipleCorrPlot.pdf",
@@ -163,43 +157,42 @@ for (i in seq(ncol(env[-6]))) {
 dev.off()
 ```
 
-Any questions?
+Alguna pregunta?
 ========================================================
 type: prompt
 
-Regarding loops
+Acerca de los bucles
 
 
-Flow control (if-else)
+Control de flujo (if-else)
 ========================================================
 type: section
-Flow control is handy when how you want to proceed in your analysis 
-is dependent on a condition
+Control de flujo es útil cuando la forma en que deseas continuar en tu análisis depende de una condición
 
-This is typically controlled by if-else statements
+Esto es típicamente controlado con declaraciones if-else
 
-The if-else statement works as follows:  
-**if (cond) expression1 else expression2**  
+La declaración if-else funciona de la siguiente manera:  
+**if (cond) expresión1 else expresión2**  
 
 
-A simple if-else example
+Un ejemplo simple de if-else
 ========================================================
 ```{r, ifElseSimpleIa, eval = TRUE}
 a = 3
 
 y <- if(a == 3) 
-  { a } else  # else on same line as the }
+  { a } else  # else en misma línea que }
     { a + 1 }
 y
 ```
-**OBS!** The **else** statement needs to be on the same line as 
-the closing **{** of the first expression
+**OJO!** La declaración **else** statement necesita estar en la misma línea que
+el cierre de **{** de la primera expresión
 
-A simple if-else example II
+Un ejemplo simple de if-else II
 ========================================================
 
 ```{r, ifElseSimpleIb, eval = TRUE}
-a = 1    # Changing the value of a
+a = 1    # Otro valor del objeto a
 
 y <- if(a == 3) 
   { a } else  
@@ -207,15 +200,16 @@ y <- if(a == 3)
 y
 ```
 
-Another if-else example
+Otro ejemplo if-else
 ========================================================
 ```{r, ifElseExample2a, eval = FALSE}
-# Calculating the mean of variables in env df
+# Calcula el promedio del los variables del df env
 avg <- apply(env, MARGIN = 2, mean)
 
-# if-else statement within a loop
-# If the value is above some threshold, print
-# the value, if not print something else
+# Declaración if-else adentro de un bucle
+# Si el valor está por encima de cierto 
+# umbral, imprime el valor, si no, 
+# imprime otra cosa
 for (i in seq(length(avg))) 
 {
   avg.i <- avg[i]
@@ -226,15 +220,12 @@ for (i in seq(length(avg)))
 }
 ```
 
-Output of Another if-else example
+Salida del ejemplo anterior
 ========================================================
 ```{r, ifElseExample2b, eval = TRUE, echo = FALSE}
-# Calculating the mean of variables in env df
+# Calculación del promedio de las variables del df env
 avg <- apply(env, MARGIN = 2, mean)
 
-# if-else statement within a loop
-# If the value is above some threshold, print
-# the value, if not print something else
 for (i in seq(length(avg))) 
 {
   avg.i <- avg[i]
@@ -244,90 +235,90 @@ for (i in seq(length(avg)))
     }
 }
 
-# The average values of env df
+# Los valores de promedio del df env
 avg
 ```
-The lower ouput box shows the average values stored in the *avg* object
+El cuadro inferior muestra la salida de los valores promedios almacenados en el objeto *avg*
 
-The ifelse() function
+La función ifelse()
 ========================================================
-- Takes three arguments
-  - the first argument is the condition
-  - the second argument is the treatment if the condition is **TRUE**
-  - the third argument is the treatment if the condition is **FALSE**
-- The **ifelse()** function can take a vector as input
-  - This is handy because we can avoid constructing loops
+- Acepta tres argumentos
+  - el primer argumento es la condición
+  - el segundo argumento es el tratamiento the second argument is the treatment si la condición es TRUE (cierto/verdadera)
+  - el tercer argumento es el tratamiento si la condición es FALSE (falsa)
+- La función **ifelse()** acepta vectores como argumentos
+  - Eso es útil ya que podemos evitar construir bucles (como en los ejemplos anteriores)
 
-Example with ifelse() function
+Ejemplo con la función ifelse()
 ========================================================
 ```{r, ifElseFunction, eval = TRUE}
 k <- 1:10
 k
 ifelse(k < 3 | k > 8, k, 0)
 ```
-- Here we have a compound condition:
-  - if k is smaller than 3 OR k is larger than 8
-  - then return the original value of k
-  - else return 0
+- Aquí tenemos una condición compuesta:
+  - "if" k es menor que 3 o k es mayor que 8
+  - entonces devuelve el valor original del k
+  - "else" return 0
 
-Arithmetic and Boolean R operators
+Operadores aritméticos y Boolean de R
 ========================================================
-Operation | Description
+Operación | Descripción
 --------- | -----------
-x + y     | Addition
-x - y     | Subtraction
-x * y     | Multiplication
-x / y     | Division
-x ^ y     | Exponentiation
-x %% y    | Modular arithmetic
-x %/%     | Integer division
-x == y    | Test for equality
+x + y     | Adición
+x - y     | Sustracción
+x * y     | Multiplicación
+x / y     | División
+x ^ y     | Exponenciación
+x %% y    | La aritmética modular
+x %/%     | División entera
+x == y    | Prueba de igualdad
 
-**x || y** Boolean OR (scalars)  
-**x | y** Boolean OR (vectors)
+**x || y** Boolean OR (scalares)  
+**x | y**  Boolean OR (vectores)
 
 ***
 
 Operation | Description
 --------- | -----------
-x <= y    | Test for less than or equal to
-x >= y    | Test for larger than or equal to
-x && y    | Boolean AND for scalars
-x & y     | Boolean AND for vectors
-!x        | Boolean negation
+x <= y    | Prueba de menor que o igual a
+x >= y    | Prueba de mayor que o igual a
+x && y    | Boolean AND para scalars
+x & y     | Boolean AND para vectors
+!x        | Boolean negación
 
-Exercise: Flow control
+Ejercicio: Control de flujo
 ========================================================
 type: alert
 
-1. Make sure you understand how if-else statements are constructed
-2. Construct some simple if-else statements using a single scalar as input
-3. Create a vector to be used as input to a call to the **ifelse()** function
-  - Create an ifelse statement with a compound condition
-4. Create a vector, then code a for loop that includes an if-else statement and that iterates over your created vector
+1. Asegúrate de entender cómo se construyen las declaraciones if-else
+2. Construye unas declaraciones sencillas de if-else utilizando un scalar como entrada
+3. Crea un vector que utilizarás como entrada a una llamada a la función **ifelse()**
+  - Crea una declaración ifelse con una condición compuesta
+4. Crea un vector, entonces codificar un bucle que incluye una declaración de if-else que itera sobre tu vector creado
 
-Any questions?
+Alguna pregunta?
 ========================================================
 type: prompt
 
-Regarding flow control and if-else statements
+Acerca de control de flujo y declaraciones de if-else
 
 
-Functions
+Funciones
 ========================================================
 type: section
 
-- A function is simply a sequence of operations that belong naturally
-together
-- If you find yourself typing the same code sequence over and over again, 
-why not turn the code sequence into a function?
-- If you wanna see how functions are coded in R, use the **page()** function [e.g., page(lm)], which will return the code
+- Una función es simplemente una secuencia de operaciones que pertenecen naturalmente
+juntos
+- Si te encuentras escribiendo la misma secuencia de código una y otra vez,
+por qué no conviertes la secuencia de código en una función?
+- Si quieres ver cómo se codifican funciones en R, utilice la función **page()** [por ejemplo, la page(lm)], que devolverá el código
 
-Creating a simple function
+Creación de una función simple
 ========================================================
-Returning an object: By default, the last object defined is returned:
+Volviendo un objeto: por defecto, se devuelve el último objeto definido:
 ```{r, simpleFunctionIa, eval = TRUE}
-# A function without arguments
+# Una función sin argumentos
 f <- function() {
   g <- 2
   h <- 4
@@ -337,80 +328,79 @@ test <- f()
 test
 ```
 
-Creating a simple function II
+Creación de una función simple II
 ========================================================
-The function can return an object using **return()**:
+La función puede returnar un objeto utilizando **return()**:
 ```{r, simpleFunctionIb, eval = TRUE}
-# Still a function without arguments
+# Otra función sin argumentos
 f2 <- function() {
   g <- 2
   h <- 4
   return(g)
 }
 
-f2()     # Not returning last object anymore
+f2()     # Ya no se devuele el último objeto
 ```
 
-Functions with arguments
+Funciones con argumentos
 ========================================================
-Creating a function for squaring values
+Se crea una función que cuadra valores
 ```{r, functionArgs, eval = TRUE}
-square <- function(x) { # Takes x as arg
+cuadrar <- function(x) { # Takes x as arg
   sqVal <- x^2
   return(sqVal)
 }
-square(3)
-# Passing a vector to the function
+cuadrar(3)
+# Pasando un vector a la función
 s <- c(NA, 4, 2, 9)
-square(s)
+cuadrar(s)
 ```
 
-Function with ... argument
+Función con argumentos ...
 ========================================================
-- The ... argument allows for adding arguments that will be passed
-to functions inside the function
-- **Yes!** You can call functions within another function
-- The possibility to specify an ***...*** argument enhances the flexibility of a function
-- Lets see how this works:
+- El argumento ... permite añadir argumentos que se pasarán a las funciones dentro de la función
+- **Sí!** Es posible llamar funciones adentro de otra función
+- La posibilidad de especificar un argumento **...** mejora la flexibilidad de una función
+- Vamos a ver cómo funciona esto:
 
-Function with ... argument II
+Función con argumentos ... II
 ========================================================
 ```{r, functionArgsII, eval = TRUE, fig.show= FALSE}
-# Making a plotting function
+# Haziendo una función de plot
 plt <- function(x, y, ...) {
   plot(x, y, 
-       type = "p",    # An ... arg
-       pch = 21,      # Another ... arg
-       bg = "red",    # Yet another ... arg
+       type = "p",    # Un arg ... 
+       pch = 21,      # Otro arg ...
+       bg = "red",    # y otro arg ...
        ...)
 }
 ```
 
-Function with ... argument III
+Función con argumentos ... III
 ========================================================
 ```{r, functionArgsIII, eval = TRUE}
 plt(x = env$Depth, y = env$BMD,
-    main = "BMD vs. Depth")  # ... argument
+    main = "BMD vs. Depth")  # arg ...
 ```
 
-Your own functions in *apply() functions
+Propias funciones en funciones *apply()
 ========================================================
 ```{r, ownFuncWithApply, eval = TRUE}
-# Using our square() function with apply
-apply(env, MARGIN = 2, square)
+# Usando nuestra función cuadrar() en apply()
+apply(env, MARGIN = 2, cuadrar)
 ```
 
-Exercises: Functions
+Ejercicio: Funciones
 ========================================================
 type: alert
-1. Create a function without arguments, as well as with and without a **return()** call
-2. Create a function that calculates the volum of a box given three arguments a, b, and c
+1. Crea una función sin argumentos y con y sin una llamada al **return**
+2. Crea una función que calcula el volumen de una caja dado tres argumentos a, b, c
 
 
-Any questions?
+Alguna pregunta?
 ========================================================
 type: prompt
 
-Regarding Functions
+Acerca de funciones y estructuras de programación
 
 
