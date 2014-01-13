@@ -17,7 +17,7 @@ Investigación reproducible
 
 - Posibilidad de inspeccionar el código
 - Dada acceso a los datos, es fácil hacer el análisis de nuevo
-- Transparente y responsable
+- Transparente
 - Por el contrario, es difícil de documentar lo que se hace en un programa tradicional de apuntar-y-hacer-click
 
 R es de código abierto
@@ -25,7 +25,7 @@ R es de código abierto
 **Código abierto**  
 - Es gratis
 - Disponible para todos
-- El codigo esta abierto para todos
+- El código esta abierto para todos
 
 ***
 **Código cerrado**  
@@ -53,7 +53,7 @@ Esquema del curso
     * Acceso a los datos
     * Entrada/Salida
   4. **Introducción breve a la programación en R**
-    * Bucles, funciones, control de flujo
+    * Bucles (loops), funciones, control de flujo
   5. **Generación de informes** (Demo, si el tiempo permite)
     
 Referencias

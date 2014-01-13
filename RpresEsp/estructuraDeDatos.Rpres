@@ -2,32 +2,32 @@
 opts_chunk$set(cache = FALSE)
 ```
 
-Estructuras de datos del R
+Estructura de datos en R
 ========================================================
 author: Thijs Christiaan van Son
 date: 
 
-Resumen: Las estructuras de datos
+Estructura de datos: Resúmen
 ========================================================
 type: section
 
-Dim | Homogéneo | Heterogéno
+Dim | Homogéneo | Heterogéneo
 --- | ----------- | -------------
 1d  | Vector      | Lista
-2d  | Matrice     | Data frame (trama de datos)
+2d  | Matrice     | Data frame
 nd  | Array       | 
 
-- *Homogéno*: El contenido debe ser del mismo tipo
-- *Heterogéno*: El contenido puede ser de diferentes tipos  
+- *Homogéneo*: El contenido debe ser del mismo tipo
+- *Heterogéneo*: El contenido puede ser de diferentes tipos  
 
-Vamos a aprender más de todos las estructuras, menos los arrays
+Vamos a aprender más de las estructuras de datos, menos los arrays
 
 Vectores
 ========================================================
 type: section
 
 - El tipo de datos fundamental del R  
-- Consiste en dos sabores básicos: *vector* y *lista*
+- Consiste en dos tipos básicos: *vector* y *lista*
   - Primero vamos a conocer los *vectores*, mientras *listas* van a ser introducidas al final
 - **OBS!** Utilice str(), la abreviatura de structure, cuando intentas entender
 la estructura de cualquier estructura de datos en R
@@ -53,16 +53,16 @@ Vectores
 ========================================================
 Pueden ser:
 - lógico (cierto o falso)
-- enteros  
-- numérico
-- carácter
+- número entero  
+- numéro decimal
+- texto
 
 ```{r, vectorTypes, eval = TRUE}
-log <- c(TRUE, FALSE, FALSE, TRUE)
-num <- c(1.2, 3.0, 3.9, 2.4)
+lgc <- c(TRUE, FALSE, FALSE, TRUE)
+dec <- c(1.2, 3.0, 3.9, 2.4)
 # Ten en cuenta el sufijo L que distingue numéricos de números enteros
-int <- c(1L, 3L, 2L, 7L)
-char <- c("these", "are", "strings")
+ent <- c(1L, 3L, 2L, 7L)
+txt <- c("esto", "es", "texto")
 ```
 
 seq()
@@ -89,7 +89,7 @@ Usando NULL
 Uno puede utilizar NULL para construir vectores en bucles
 ```{r, NULL, eval = TRUE}
 z <- NULL
-for(i in seq(10)) if(i %%2 == 0) z <- c(z, i)
+for(i in seq(10)) if(i%%2 == 0) z <- c(z, i)
 z
 ```
 - %% es el operador módulo, dando recordatorios al dividir  
@@ -110,43 +110,43 @@ Indexación
 ========================================================
 Las estructuras de datos en R son indexados
 ```{r, indexing, eval = TRUE}
-num
-num[1]
-num[2:3]
+dec
+dec[1]
+dec[2:3]
 ```
 
 Indexación negativa
 ========================================================
 ```{r, negIndexing, eval = TRUE}
-num
-num[-1]
-num[-c(1, 3)]
+dec
+dec[-1]
+dec[-c(1, 3)]
 ```
 
-Filteración
+Filtración
 ========================================================
-Extracto de elementos vectoriales con condiciones satisfactorias
+Extracción de elementos vectoriales con condiciones satisfactorias
 ```{r, filter, eval = TRUE}
-num
-num[num*num > 4]
-num[num == 0]
+dec
+dec[dec*dec > 4]
+dec[dec == 0]
 ```
 
 Filtración por vector lógico
 ========================================================
 ```{r, filterLogical, eval = TRUE}
-num
-sel <- num*num >= 9
+dec
+sel <- dec*dec >= 9
 sel
-num[sel]
+dec[sel]
 ```
 
 Prueba de igualdad entre vectores
 ========================================================
 ```{r, vectorEquality, eval = TRUE}
-num
-(num2 <- c(1.1, 3.0, 3.6, 2.7))
-num == num2
+dec
+(dec2 <- c(1.1, 3.0, 3.6, 2.7))
+dec == dec2
 ```
 
 Añadir o eliminar elementos
@@ -228,7 +228,7 @@ type: section
 
 Creación de matrices
 ========================================================
-- Podemos usar la función **matrix()** para crear una matrix a partir de zero
+- Podemos usar la función **matrix()** para crear una matriz a partir de zero
 - Por defecto, R almacena una matriz por columnas
 - Al igual que para los vectores, índices de filas y columnas en una matriz comienza con 1
 
@@ -251,7 +251,7 @@ z
 y        # Compare con por columnas
 ```
 
-Creación de una matriz "vacío"
+Creación de una matriz "vacía"
 ========================================================
 ```{r, emptyMatrix, eval = TRUE}
 e <- matrix(data = NA, ncol = 3, nrow = 3,
@@ -311,7 +311,7 @@ Añadir y eliminar filas y columnas
 ========================================================
 - Matrices tienen dimensiones fijas
   - Por lo tanto, no podemos añadir o eliminar filas o columnas
-- La solución: *reasignar* la matriz
+- La solución: *reacondicionar* la matriz
   - Proporciona el mismo efecto que si hubiéramos añadido o eliminado
    filas y/o columnas
 
@@ -340,10 +340,9 @@ str(z)      # Clase de matriz
 
 Nombres de filas y columnas
 ========================================================
-- La forma natural para referirse a las filas y columnas en una matriz es mediante el uso de los números de fila y de columna
-- Las funciones **colnames()** y **rownames()** proporciona medias para nombrar columnas y filas
-- Es especialmente útil dar los nombres de las columnas y de las filas cuando se quiere inspeccionar el contenido de una matriz
-- También si uno simplemente quiere recordarse que está almacenado en las filas y columnas
+- La forma natural para referirse a las filas y columnas en una matriz es mediante el uso del número de fila y de columna
+- Las funciones **colnames()** y **rownames()** proporciona medidas para nombrar columnas y filas
+- Es especialmente útil dar los nombres de las columnas y de las filas cuando se quiere inspeccionar y/o recordar el contenido de una matriz
 
 Nombres de filas y columnas II
 ========================================================
@@ -375,7 +374,7 @@ type: alert
 1. Crea matrices de diferentes dimensiones usando **matrix()**, **cbind()**, and **rbind()**
 2. Cuál es la forma predeterminada de almacenamiento de datos en una matriz usando **matriz()**? Por filas o por columnas?
 3. Asegúrate de que eres capaz de almacenar los datos en una matriz por filas y por columnas
-4. Desde tus matrices creadas, extra columnas, filas y valores individuales
+4. Desde tus matrices creadas, extrae columnas, filas y valores individuales
 5. Filtra tus matrices mediante la aplicación de una condición
 
 Alguna pregunta?
@@ -383,7 +382,7 @@ Alguna pregunta?
 type: prompt
 Acerca de matrices
 
-Data frame (Trama de datos)
+Data frame
 ========================================================
 type: section
 - Data frames son muy comunes en R  
@@ -409,7 +408,7 @@ Recomiendo usar archivos **.csv**
 ```{r, readCsv, eval = TRUE}
 env<-read.csv("../data/envVarSomeRaw.csv",
               header = TRUE)
-env      # This is a data frame
+env      # Esto es un data frame
 ```
 
 Salida de datos tabulares
@@ -514,7 +513,7 @@ type: alert
 Alguna pregunta?
 ========================================================
 type: prompt
-Acerca de data frames (trama de datos)
+Acerca de data frames
 
 Listas
 ========================================================
@@ -570,7 +569,7 @@ L[[1]][c(1, 3)]
 Salida de un modelo es una lista
 ========================================================
 ```{r, envModelling, eval = TRUE}
-# Ajuste de un modelo linear
+# Ajuste de un modelo lineal
 mod <- lm(Mud ~ Depth, data = env)
 
 # Es el objeto mod una lista?

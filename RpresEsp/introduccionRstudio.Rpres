@@ -39,13 +39,13 @@ Ejecución de comandos en la consola de R
 - La consola puede ser utilizado como calculadora
 - Presiona **Enter** para ejecutar el comando     
 - Creando un vector *v* utilizando la función **seq()**  
-- Donde se experimenta y comprueba codigo
+- Donde se experimenta y comprueba código
 
 Ejercicio: La consola de R
 ========================================================
 type: alert
 - Haz operaciones matemáticas simples
-- Crea dos vectores *a* y *b* y haz alguna operación matemática con ellos
+- Crea dos vectores *a* y *b* haz alguna operación matemática con ellos
   - Adición
   - Multiplicacón
   - División
@@ -60,7 +60,7 @@ type: section
 - Muy potente  
 - El panel más importante
 - Aquí es donde pasarás la mayor parte de tu tiempo
-- Ejectuar líneas de código con **Ctrl+Enter**
+- Ejecutar líneas de código con **Ctrl+Enter**
 
 Abrir un script
 ========================================================
@@ -70,45 +70,45 @@ Ejercicio: Abre, escribe y ejecuta un script de R
 ========================================================
 type: alert
 - Abre un script de R en RStudio
-- Define dos vectores numéricos *x* and *y*, cada uno de longitud 4
-- Define un nuevo vector *z* que muliplica *x* y *y*
+- Define dos vectores numéricos *a* y *b*, cada uno de 4 elementos
+- Define un nuevo vector *z* que muliplica *a* y *b*
 - Ejecuta el script
 
-Contenidos de otros paneles
+Contenidos de los paneles (uso de las pestañas)
 ========================================================
 type: section
 
-Panel de historia
+History
 ========================================================
 ![History Tab](../illustrations/historyTab.png)
 - Realiza un seguimiento de código interpretado (es decir, el código enviado a y ejecutado en la consola)
 - Selecciona el código haciendo clic en él y envíalo a la consola/fuente
 - Después viene más sobre como navigar la historia de comandos 
 
-Panel de archivos
+Files
 ========================================================
 ![Files Tab](../illustrations/filesTab.png)
 - Un simple explorador de archivos
 - Los archivos se pueden abrir haciendo clic sobre ellos 
 
-Panel de paquetes
+Packages
 ========================================================
 ![Packages Tab](../illustrations/packagesTab.png)
 - Resumen de paquetes instalados
 - Haz click sobre un paquete para obtener un resumen de su funciones
 
-Panel de ayuda
+Help
 ========================================================
 ![Help Tab](../illustrations/helpTab.png)
 - Busca directamente en la ventana de búsqueda o escribiendo **?NameOfFunction** en la consola
 
-Panel de Plots
+Plots
 ========================================================
 ![Plot Tab](../illustrations/plotTab.png)
 ***
 Más después
 
-Panel de presentaciones
+Presentation
 ========================================================
 ![Presentation Tab](../illustrations/presentationTab.png)
 
@@ -183,7 +183,7 @@ Secciones de código
 
 Comentarios
 ========================================================
-- Comenta **que** el código hace, no **cómo** lo hace
+- Comenta lo **que** el código hace, no **cómo** lo hace
 - A menudo, secciones de código con buenos títulos descriptivos pueden ser suficientes
 - Pon un # al comienzo de un comentario (de esta manera R entiende que es un comentario)
 - Pon comentarios on/off utilizando **Ctrl+Shift+C**
@@ -198,11 +198,11 @@ Historia de comandos
 Ejercicio: Completar por tabulación
 ========================================================
 type: alert
-- Completar funciones e argumentos  
+- Completar funciones y argumentos  
 - Completar objectos  
 - Completar nombres de archivos
-- Completar bracket y quote
-  - Bracket y quotes correspondientes se resaltan
+- Completar parentesis, corchetes y comillas
+  - parentesis y comillas correspondientes se resaltan
 
 Calidad de código: Legibilidad
 ========================================================
@@ -240,7 +240,7 @@ diversidad <- 3
 Buscar y reemplazar
 ========================================================
 ![Find Replace](../illustrations/findReplace.png)
-- Invoca por **Ctrl+F**
+- Haz uso **Ctrl+F**
 - Puede diferenciar entre mayúsculas y minúsculas
 - Puede ser limitado a una selección del código
 
@@ -260,8 +260,8 @@ type: alert
 
 1. Crea dos vectores *a* y *b* utilizando la función **rnorm()**
 2. Plotéalos uno contra el otro
-3. Haz exportaciones de la figura utilzando diferentes formatos disponibles en el panel de plots
-4. Àbrelas e inspecciona su calidad
+3. Haz exportaciones de la figura utilzando diferentes formatos disponibles en la pestaña Plots
+4. Ábrelas e inspecciona su calidad
 
 Exportación directa de plots/figuras
 ========================================================
@@ -272,7 +272,6 @@ b <- rnorm(mean = 0, sd = 1, n = 10)
 pdf(file = "exportacionDirecta.pdf", 
     width = 5, 
     height = 5)
-
 plot(x <- a, y <- b,
      main = "Exportación directa")
 dev.off()
