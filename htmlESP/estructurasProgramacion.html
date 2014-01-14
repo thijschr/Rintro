@@ -798,7 +798,7 @@ hljs.initHighlightingOnLoad();
 <li>Construir bucles y funciones probablemente no es lo primero biólogos nuevos a R quieren  dedicar tiempo a aprender</li>
 <li>Estas técnicas a menudo se perciben como difícil de entender al principio</li>
 <li>Sin embargo, la recompensa puede ser enorme en términos de ahorro de tiempo y la posibilidad de hacer análisis más avazados</li>
-<li>Aqu&#39;vamos a tener una introducción breve a <em>bucles</em>, <em>control de flujo</em> y como crear<em>funciones</em></li>
+<li>Aquí vamos a tener una introducción breve a <em>bucles</em>, <em>control de flujo</em> y como crear<em>funciones</em></li>
 </ul>
 
 </div>
@@ -841,7 +841,7 @@ for (numero in x) {     # un bucle &quot;for&quot;
 
 <ul>
 <li>En este ejemplo hacemos solamente una manipulación de datos por iteración, es decir, elevamos al cuadrado los números en el vector <em>x</em></li>
-<li>Esto se hace uno por uno, primero el primer componente del vector <em>x</em>, despúes el segundo componente y así sucesivamente, hasta que hayamos iterado sobre todos los componentes</li>
+<li>Esto se hace uno por uno, primero el primer elemento del vector <em>x</em>, despúes el segundo elemento y así sucesivamente, hasta que hayamos iterado sobre todos los elementos</li>
 </ul>
 
 </div>
@@ -850,7 +850,7 @@ for (numero in x) {     # un bucle &quot;for&quot;
 <section data-transition="linear" data-transition-speed="default">
 <h3>Un bucle "for": ejemplo más aplicado</h3>
 <div class="slideContent" >
-<p>Este es el data frame <em>env</em> que cargamos antes. Imaginamos que queremos correlacionar profundidad con todas las otras variables y luego almacenar los resultados en una trama de datos y exportar a csv</p>
+<p>Este es el data frame <em>env</em> que cargamos antes. Imaginamos que queremos correlacionar profundidad con todas las otras variables y luego almacenar los resultados en un data frame y exportar a csv</p>
 
 <pre><code>     TN  TOC    CN BMD  Mud Depth
 1  0.31 3.75 12.10 0.6 60.2 69.15
@@ -1066,7 +1066,7 @@ avg &lt;- apply(env, MARGIN = 2, mean)
 
 # Declaración if-else adentro de un bucle
 # Si el valor está por encima de cierto 
-# umbral, imprime el valor, si no, 
+# umbral/nivel, imprime el valor, si no, 
 # imprime otra cosa
 for (i in seq(length(avg))) 
 {
@@ -1112,7 +1112,7 @@ Depth
 
 <ul>
 <li>el primer argumento es la condición</li>
-<li>el segundo argumento es el tratamiento the second argument is the treatment si la condición es TRUE (cierto/verdadera)</li>
+<li>el segundo argumento es el tratamiento si la condición es TRUE (cierto/verdadera)</li>
 <li>el tercer argumento es el tratamiento si la condición es FALSE (falsa)</li>
 </ul></li>
 <li>La función <strong>ifelse()</strong> acepta vectores como argumentos
