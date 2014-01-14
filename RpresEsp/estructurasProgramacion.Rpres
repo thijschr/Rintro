@@ -12,7 +12,7 @@ Biólogos y programación
 - Construir bucles y funciones probablemente no es lo primero biólogos nuevos a R quieren  dedicar tiempo a aprender
 - Estas técnicas a menudo se perciben como difícil de entender al principio
 - Sin embargo, la recompensa puede ser enorme en términos de ahorro de tiempo y la posibilidad de hacer análisis más avazados
-- Aqu'vamos a tener una introducción breve a *bucles*, *control de flujo* y como crear*funciones*
+- Aquí vamos a tener una introducción breve a *bucles*, *control de flujo* y como crear*funciones*
 
 Bucles
 ========================================================
@@ -36,11 +36,11 @@ for (numero in x) {     # un bucle "for"
 }
 ```
 - En este ejemplo hacemos solamente una manipulación de datos por iteración, es decir, elevamos al cuadrado los números en el vector *x*
-- Esto se hace uno por uno, primero el primer componente del vector *x*, despúes el segundo componente y así sucesivamente, hasta que hayamos iterado sobre todos los componentes
+- Esto se hace uno por uno, primero el primer elemento del vector *x*, despúes el segundo elemento y así sucesivamente, hasta que hayamos iterado sobre todos los elementos
 
 Un bucle "for": ejemplo más aplicado
 ========================================================
-Este es el data frame *env* que cargamos antes. Imaginamos que queremos correlacionar profundidad con todas las otras variables y luego almacenar los resultados en una trama de datos y exportar a csv
+Este es el data frame *env* que cargamos antes. Imaginamos que queremos correlacionar profundidad con todas las otras variables y luego almacenar los resultados en un data frame y exportar a csv
 ```{r, load_env, eval = TRUE, echo = FALSE}
 env<-read.csv("../data/envVarSomeRaw.csv",
               header = TRUE)
@@ -208,7 +208,7 @@ avg <- apply(env, MARGIN = 2, mean)
 
 # Declaración if-else adentro de un bucle
 # Si el valor está por encima de cierto 
-# umbral, imprime el valor, si no, 
+# umbral/nivel, imprime el valor, si no, 
 # imprime otra cosa
 for (i in seq(length(avg))) 
 {
@@ -244,7 +244,7 @@ La función ifelse()
 ========================================================
 - Acepta tres argumentos
   - el primer argumento es la condición
-  - el segundo argumento es el tratamiento the second argument is the treatment si la condición es TRUE (cierto/verdadera)
+  - el segundo argumento es el tratamiento si la condición es TRUE (cierto/verdadera)
   - el tercer argumento es el tratamiento si la condición es FALSE (falsa)
 - La función **ifelse()** acepta vectores como argumentos
   - Eso es útil ya que podemos evitar construir bucles (como en los ejemplos anteriores)
