@@ -280,8 +280,8 @@ Matrix filtering
 ========================================================
 ```{r, matrixFilt, eval = TRUE}
 z
+z[z >= 3]
 z[z[, 1] == 7, ]   # OBS! z[rows, cols]
-z[, z[2, ] >= 9]
 ```
 
 Matrix filtering: Ex 2
@@ -444,15 +444,86 @@ head(env, 3)  # First three observations
 tail(env, 3)  # Last three observations
 ```
 
-Adding a column
+Data frame manipulation using dplyr package
+========================================================
+```{r dplyrLoad, echo=FALSE}
+library(dplyr)
+```
+The dplyr package contains four basic functions for manipulation of data frames
+- **filter()**
+- **arrange()**
+- **select()**
+- **mutate()**
+
+dplyr: filter()
+========================================================
+**filter()** allows you to select a SUBSET of the rows of a data frame. There exist alternative ways of filtering, e.g., the **subset()** function.
+```{r dplyrFilter}
+filter(env, Depth > 50)
+```
+
+dplyr: filter() II
+========================================================
+Filtering conditions can be joined together
+```{r dplyrFilterII}
+filter(env, CN >= 11 & BMD >= 1.0)
+filter(env, Depth > 90 | Depth < 40)
+```
+
+dplyr: arrange()
+========================================================
+**arrange()** works similarly to **filter()** except that instead of filtering or selecting rows, it reorders them.
+```{r dplyrArrange}
+arrange(env, Depth)
+```
+
+dplyr: arrange() II
+========================================================
+**arrange()** can also reorder in descending order.
+```{r dplyrArrangeII}
+arrange(env, desc(Mud))
+```
+
+dplyr: select()
+========================================================
+**select()** allows you to select only the variables of interest.
+```{r dplyrSelect}
+select(env, CN, BMD, Depth)
+```
+
+dplyr: select() II
+========================================================
+Its possible to select a sequence of variables
+```{r dplyrSelectII}
+select(env, TN:TOC, Mud:Depth)
+```
+
+dplyr: mutate()
+========================================================
+**mutate()** allows you to add new columns that are functions of other columns
+```{r dplyrMutate}
+mutate(env, CN2 = TOC/TN)
+```
+
+dplyr: transmute()
+========================================================
+**transmute()** drops existing variables
+```{r dplyrTransmute, results='hide'}
+transmute(env, CN2 = TOC/TN)
+```
+```{r dplyrTransmuteII}
+head(env)
+```
+
+Adding a variable (not function of others)
 ========================================================
 ```{r, addColDF, eval = TRUE}
 # Adding a column
-env$X <- with(env, TOC / TN)
+env$index <- 1:10
 env
 ```
 
-Removing a column
+Alternative for removing a column
 ========================================================
 ```{r, remColDF, eval = TRUE}
 env <- env[, -7]   # Easiest by col number
@@ -468,22 +539,6 @@ env[1:5, 6]
 names(env)    # Handy function
 env[1:5, ]$Depth
 ```
-
-Filtering
-========================================================
-```{r, filteringDF, eval = TRUE}
-# Extracting observations deeper than 60m
-env[env$Depth >= 60, ]
-```
-Extracts all observations (= rows) that comply with the filtering criteria
-
-Filtering II
-========================================================
-```{r, filteringDFII, eval = TRUE}
-# Two filtering criteria
-env[env$Depth <= 70 & env$BMD >= 1, ]
-```
-Extracts all observations (= rows) matching both the Depth and BMD criteria
 
 Avoiding dimension reduction
 ========================================================
