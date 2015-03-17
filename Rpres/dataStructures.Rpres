@@ -544,9 +544,9 @@ Avoiding dimension reduction
 ========================================================
 ```{r, dimRedDF, eval = TRUE}
 # Extracting a one-dimensional subset returns a vector
-env[1:5, ]$TN
-str(env[1:5, ]$TN)
-is.vector(env[1:5, ]$TN)
+env$TN[1:5]
+str(env$TN[1:5])
+is.vector(env$TN[1:5])
 ```
 
 Avoiding dimension reduction II
