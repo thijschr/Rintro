@@ -37,7 +37,7 @@ R packages
 
 ***
 
-In November 2013, the number of contributed R packages on CRAN reached 5000.
+In November 2013, the number of contributed R packages on CRAN reached 5000. The number will soon reach 6500 (March 2015).
 
 
 Outline of course
@@ -52,7 +52,7 @@ Outline of course
     * Input/output
   4. **Short intro to programming in R**
     * Loops, functions, flow control
-  5. **Generating reports** (Demo, if time permits)
+  5. **Demo: Example spatial analysis** (Demo, if time permits)
     
 References
 ========================================================
@@ -70,7 +70,8 @@ Downloading course material
 ========================================================
 - Make an R/ directory and a subdirectory called Projects/ in an appropriate place 
 in your computer
-- Go to: https://bitbucket.org/thijschr/rintro
-- In the box on the right-hand side, click the download-link
-- Extract the downloaded zip-file to your R/Projects/ folder
+- You may also want to make a subdirectory in the Projects/ folder. You may called RIntro for example
+- Go to: https://github.com/thijschr/Rintro
+- In the box on the right-hand side, click the 'Download ZIP' box
+- Extract the downloaded zip-file to your R/Projects/RIntro directory
 - All the material related to the course is contained in the zip-file
