@@ -129,10 +129,9 @@ Loading packages: In script
 # To load or unload packages
 library(vegan)
 detach("package:vegan", unload=TRUE)
-require(mgcv)
 ```
 - **library()** most often used, however, many dislikes it because of the confusion between *packages* and *libraries*
-- It can be a good idea to stick to **require()**, which is also the command you need to use if loading a package inside a function
+- Therefore, many use **require()**, but it is recommended to stick to using **library()**
 
 Finding packages
 ========================================================
