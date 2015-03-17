@@ -564,7 +564,7 @@ type: alert
 2. Load the envVarAllZST.csv file in the data directory
   - Inspect the structure of the data frame
   - Access subsets of the data by subscripts and by column name
-  - Do some filtering on the data frame
+  - Manipulate the data frame using functions in the dplyr package
   - Write the filtered data to a .csv file using the **write.csv()** function
   - Open the created .csv file in a text editor
 3. Perform correlation tests using the **cor.test()** function
