@@ -467,7 +467,7 @@ dplyr: filter() II
 Filtering conditions can be joined together
 ```{r dplyrFilterII}
 filter(env, CN >= 11 & BMD >= 1.0)
-filter(env, Depth > 90 | Depth < 40)
+filter(env, Depth > 70 | TN > 0.4)
 ```
 
 dplyr: arrange()
