@@ -537,7 +537,7 @@ Accessing data frames
 env[1:5, 6]
 # Extracting by column name
 names(env)    # Handy function
-env[1:5, ]$Depth
+env$Depth[1:5]
 ```
 
 Avoiding dimension reduction
