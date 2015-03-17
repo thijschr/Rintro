@@ -96,6 +96,7 @@ z
 - %% is the modulo operator, giving reminders upon division  
 - **OBS!** This is an artificial example - How could we have made this vector
 in a more efficient and elegant way?
+- Creating a NULL vector like this is not recommended if the final vector is very long. It is inefficient in terms of speed
 
 NA vs. NULL
 ========================================================
