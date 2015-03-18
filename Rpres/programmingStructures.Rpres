@@ -398,7 +398,7 @@ Your own functions in *apply() functions
 ========================================================
 ```{r, ownFuncWithApply, eval = TRUE}
 # Using our square() function with apply
-apply(env, MARGIN = 2, square)
+apply(env[, 3:6], MARGIN = 2, square)
 ```
 
 Exercises: Functions
