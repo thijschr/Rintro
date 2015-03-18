@@ -57,7 +57,7 @@ For loops: a more applied example II
 - 2) Code the for loop  
   - for loop with five iterations
   - in each iteration, run **cor.test()**  
-  - in each iteration, extract tau and p-values  
+  - in each iteration, extract and store tau and p-values  
   - end of loop  
 - 3) Store the results in a data frame  
 - 4) Write results to a csv file  
@@ -80,9 +80,9 @@ For loops: a more applied example IV
 ```{r, secondLoopIIa, eval = TRUE}
 # 2) Code the for loop
 for (i in seq(ncol(env[-6]))) {
-  tmp.i <- env[, i]
+  var.i <- env[, i]
   test.i <- cor.test(x = env$Depth,
-                     y = tmp.i,
+                     y = var.i,
                      method = "k")
   tau[i] <- test.i$estimate
   pval[i] <- test.i$p.value
@@ -96,11 +96,11 @@ resDF <- data.frame(var = names(env)[-6],
 For loops: a more applied example V
 ========================================================
 ```{r, secondLoopIII, eval = TRUE}
+resDF     # Displaying results
 # 4) Write results to a csv file
 write.csv(resDF,
           file = "../data/corrResults.csv",
           row.names = FALSE)
-resDF     # Displaying results
 ```
 5) Inspect the resulting csv file
 
