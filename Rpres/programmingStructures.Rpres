@@ -192,8 +192,9 @@ y <- if(a == 3)
     { a + 1 }
 y
 ```
+The **if** statement is either TRUE or FALSE. If TRUE, then the first expression is evaluated, if FALSE, then the second expression is evaluated (i.e., expression after the **else**).  
 **OBS!** The **else** statement needs to be on the same line as 
-the closing **{** of the first expression
+the closing **}** of the first expression.
 
 A simple if-else example II
 ========================================================
