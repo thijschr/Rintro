@@ -70,7 +70,7 @@ Downloading course material
 ========================================================
 - Make an R/ directory and a subdirectory called Projects/ in an appropriate place 
 in your computer
-- You may also want to make a subdirectory in the Projects/ folder. You may called RIntro for example
+- You may also want to make a subdirectory in the Projects/ directory. You may call it RIntro for example
 - Go to: https://github.com/thijschr/Rintro
 - In the box on the right-hand side, click the 'Download ZIP' box
 - Extract the downloaded zip-file to your R/Projects/RIntro directory
